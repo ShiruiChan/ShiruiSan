@@ -1,17 +1,17 @@
+// src/PortfolioApp.tsx
 import React from "react";
-import { useTheme } from "@/hooks/useTheme";
-import { i18n, type Lang } from "@/shared/i18n";
+import { i18n } from "@/shared/i18n";
 import { Section } from "./components/Section";
-import { Header } from "./components/Header";
 import { About } from "./components/About";
 import { AboutContent } from "./components/AboutContent";
 import { ProjectsGrid } from "./components/ProjectsGrid";
 import { ExperienceSection } from "./components/ExperienceSection";
-import { BlogSection } from "./components/BlogSection";
+// import { BlogSection } from "./components/BlogSection";
 import { ContactForm } from "./components/ContactForm";
-import { Footer } from "./components/Footer";
+import { useLang } from "@/hooks/useLang";
 
-// new imports
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import { MorphingGradient } from "./components/MorphingGradient";
 import { CredibilityBar } from "./components/CredibilityBar";
 import { HeaderRow } from "./components/HeaderRow";
@@ -25,17 +25,16 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { GridTexture } from "./components/GridTexture";
 
 export default function PortfolioApp() {
-  const [lang, setLang] = React.useState<Lang>("ru");
+  const { lang } = useLang();
   const t = i18n[lang];
-  const { theme, setTheme } = useTheme();
   const { track } = useAnalytics();
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
-      <Header lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
+      <Header />
 
-      {/* Conversion HERO override (keeps your header) */}
-      <section className="relative overflow-hidden border-b">
+      {/* HERO */}
+      <section id="home" className="relative overflow-hidden border-b">
         <MorphingGradient />
         <div className="absolute inset-0 pointer-events-none">
           <GridTexture />
@@ -43,10 +42,10 @@ export default function PortfolioApp() {
         <div className="max-w-6xl mx-auto px-4 py-20 sm:py-28 relative">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight">
-                Websites that <span className="text-primary">sell</span> — fast,
-                beautiful, measurable
-              </h1>
+              <h1
+                className="text-4xl sm:text-6xl font-semibold tracking-tight"
+                dangerouslySetInnerHTML={{ __html: t.hero.title_html }}
+              />
               <p className="mt-5 text-muted-foreground text-lg max-w-xl">
                 {profile.bio}
               </p>
@@ -59,12 +58,12 @@ export default function PortfolioApp() {
                   }
                 >
                   <a href={profile.calendly} target="_blank" rel="noreferrer">
-                    Book a free consult
+                    {t.hero.cta_book}
                   </a>
                 </Button>
 
                 <Button asChild variant="secondary">
-                  <a href="#services">See packages</a>
+                  <a href="#services">{t.hero.cta_packages}</a>
                 </Button>
               </div>
             </div>
@@ -80,15 +79,12 @@ export default function PortfolioApp() {
       <main>
         <About />
 
-        <Section id="projects" title={lang === "ru" ? "Проекты" : "Projects"}>
+        <Section id="projects" title={t.sections.projects_title}>
           <ProjectsGrid lang={lang} />
         </Section>
 
-        <Section id="services" title="Choose your outcome">
-          <HeaderRow
-            title=""
-            subtitle="Clear scope, fixed price, real results."
-          />
+        <Section id="services" title={t.sections.services_title}>
+          <HeaderRow title="" subtitle={t.sections.services_subtitle} />
           <ServicesGrid />
         </Section>
 
@@ -100,10 +96,11 @@ export default function PortfolioApp() {
           <AboutContent />
         </Section>
 
-        <Section id="testimonials" title="Clients say">
+        <Section id="testimonials" title={t.sections.testimonials_title}>
           <TestimonialStrip testimonials={TESTIMONIALS} />
         </Section>
 
+        {/* Если решишь вернуть блог: */}
         {/* <Section id="blog" title={t.nav.blog}>
           <BlogSection />
         </Section> */}

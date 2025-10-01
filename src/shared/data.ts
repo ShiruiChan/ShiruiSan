@@ -13,6 +13,21 @@ export const skills = [
   "Performance",
 ];
 
+export type NavSection = {
+  id: string;
+  label: string;
+};
+
+export const NAV_SECTIONS: NavSection[] = [
+  { id: "home", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "services", label: "Services" },
+  { id: "experience", label: "Experience" },
+  { id: "about", label: "About" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
+];
+
 export const projects = [
   {
     title: "Tours of Yakutia",

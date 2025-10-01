@@ -1,16 +1,25 @@
 export const i18n = {
   en: {
     nav: {
-      about: "About",
+      home: "Home",
       projects: "Projects",
+      services: "Services",
       experience: "Experience",
-      blog: "Blog",
+      about: "About",
+      testimonials: "Testimonials",
       contact: "Contact",
+      // blog: "Blog", // если используешь
     },
     hero: {
-      title: "Crafting fast, elegant interfaces",
-      ctaPrimary: "View Projects",
-      ctaSecondary: "Download CV",
+      title_html: `Websites that <span class="text-primary">sell</span> — fast, beautiful, measurable`,
+      cta_book: "Book a free consult",
+      cta_packages: "See packages",
+    },
+    sections: {
+      projects_title: "Projects",
+      services_title: "Choose your outcome",
+      services_subtitle: "Clear scope, fixed price, real results.",
+      testimonials_title: "Clients say",
     },
     contact: {
       title: "Let’s build something great",
@@ -22,16 +31,26 @@ export const i18n = {
   },
   ru: {
     nav: {
-      about: "Обо мне",
+      home: "Главная",
       projects: "Проекты",
+      services: "Услуги",
       experience: "Опыт",
-      blog: "Блог",
+      about: "Обо мне",
+      testimonials: "Отзывы",
       contact: "Контакты",
+      // blog: "Блог",
     },
     hero: {
-      title: "Создаю быстрые и изящные интерфейсы",
-      ctaPrimary: "Смотреть проекты",
-      ctaSecondary: "Скачать резюме",
+      title_html: `Сайты, которые <span class="text-primary">продают</span> — быстрее, красивее, измеримо`,
+      cta_book: "Забронировать консультацию",
+      cta_packages: "Посмотреть планы",
+    },
+    sections: {
+      projects_title: "Проекты",
+      services_title: "Выберите свой результат",
+      services_subtitle:
+        "Чёткий охват, фиксированная цена, реальные результаты.",
+      testimonials_title: "Клиенты говорят",
     },
     contact: {
       title: "Давайте сделаем крутой продукт",
