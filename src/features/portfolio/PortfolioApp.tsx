@@ -1,5 +1,3 @@
-// src/PortfolioApp.tsx
-import React from "react";
 import { i18n } from "@/shared/i18n";
 import { Section } from "./components/Section";
 import { About } from "./components/About";
