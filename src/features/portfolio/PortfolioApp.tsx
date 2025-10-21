@@ -10,22 +10,16 @@ import { useLang } from "@/hooks/useLang";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { MorphingGradient } from "./components/MorphingGradient";
 import { CredibilityBar } from "./components/CredibilityBar";
 import { HeaderRow } from "./components/HeaderRow";
-import { CaseCard } from "./components/CaseCard";
 import { ServicesGrid } from "./components/ServicesGrid";
-import { TESTIMONIALS, CASES } from "@/shared/data";
+import { TESTIMONIALS } from "@/shared/data";
 import { TestimonialStrip } from "./components/TestimonialStrip";
-import { Button } from "@/components/ui/button";
-import { profile } from "@/shared/profile";
-import { useAnalytics } from "@/hooks/useAnalytics";
-import { GridTexture } from "./components/GridTexture";
+import Hero from "@/components/Hero";
 
 export default function PortfolioApp() {
   const { lang } = useLang();
   const t = i18n[lang];
-  const { track } = useAnalytics();
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
@@ -33,43 +27,7 @@ export default function PortfolioApp() {
 
       {/* HERO */}
       <section id="home" className="relative overflow-hidden border-b">
-        <MorphingGradient />
-        <div className="absolute inset-0 pointer-events-none">
-          <GridTexture />
-        </div>
-        <div className="max-w-6xl mx-auto px-4 py-20 sm:py-28 relative">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h1
-                className="text-4xl sm:text-6xl font-semibold tracking-tight"
-                dangerouslySetInnerHTML={{ __html: t.hero.title_html }}
-              />
-              <p className="mt-5 text-muted-foreground text-lg max-w-xl">
-                {profile.bio}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  className="gap-2"
-                  onClick={() =>
-                    track("cta_consult_click", { placement: "hero" })
-                  }
-                >
-                  <a href={profile.calendly} target="_blank" rel="noreferrer">
-                    {t.hero.cta_book}
-                  </a>
-                </Button>
-
-                <Button asChild variant="secondary">
-                  <a href="#services">{t.hero.cta_packages}</a>
-                </Button>
-              </div>
-            </div>
-            <div className="grid gap-4">
-              <CaseCard caseItem={CASES[0]} />
-            </div>
-          </div>
-        </div>
+        <Hero />
       </section>
 
       <CredibilityBar />
