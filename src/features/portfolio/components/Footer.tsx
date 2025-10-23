@@ -10,7 +10,7 @@ export default function Footer() {
   const t = useTranslate();
 
   return (
-    <footer className="relative mt-20 bg-gradient-to-b from-white/70 to-white/90 backdrop-blur dark:from-[rgba(3,3,3,0.25)] dark:to-[rgba(124,92,255,0.25)] transition-colors duration-500">
+    <footer className="relative mt-20 bg-gradient-to-b from-white/70 to-white/90 backdrop-blur dark:from-[rgba(21,21,21)] dark:to-[rgba(124,92,255,0.25)] transition-color duration-500">
       <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-slate-400/50 to-transparent dark:via-slate-600/50" />
 
       <div className="mx-auto w-[min(1100px,92%)] px-4 py-10">
