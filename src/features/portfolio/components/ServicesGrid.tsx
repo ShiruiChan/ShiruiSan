@@ -68,7 +68,7 @@ export function ServicesGrid() {
                   variant="outline"
                   className="w-fit mt-2 text-base font-semibold border-primary/30 bg-primary/5"
                 >
-                  <DollarSign className="w-4 h-4 mr-1" />
+                  {/* <DollarSign className="w-4 h-4 mr-1" /> */}
                   {service.price}
                 </Badge>
               </CardHeader>
