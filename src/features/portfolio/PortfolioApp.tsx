@@ -11,7 +11,6 @@ import { useLang } from "@/hooks/useLang";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 // import { CredibilityBar } from "./components/CredibilityBar";
-import { HeaderRow } from "./components/HeaderRow";
 import { ServicesGrid } from "./components/ServicesGrid";
 import { TESTIMONIALS } from "@/shared/data";
 import { TestimonialStrip } from "./components/TestimonialStrip";
