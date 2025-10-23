@@ -1,3 +1,5 @@
+// Секция блога
+
 import {
   Card,
   CardContent,

@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
+// ы
 export function Stat({ number, label }: { number: string; label: string }) {
   return (
     <Card className="text-center">

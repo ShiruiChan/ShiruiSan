@@ -10,7 +10,7 @@ import { useLang } from "@/hooks/useLang";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { CredibilityBar } from "./components/CredibilityBar";
+// import { CredibilityBar } from "./components/CredibilityBar";
 import { HeaderRow } from "./components/HeaderRow";
 import { ServicesGrid } from "./components/ServicesGrid";
 import { TESTIMONIALS } from "@/shared/data";
@@ -30,7 +30,8 @@ export default function PortfolioApp() {
         <Hero />
       </section>
 
-      <CredibilityBar />
+      {/* Избранные работы (лого и название) */}
+      {/* <CredibilityBar /> */}
 
       <main>
         <About />

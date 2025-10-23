@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { Sun, Moon, ChevronRight, Rocket, Sparkles } from "lucide-react";
+import { useTranslate } from "@/hooks/useTranslate";
 
 /* -------------------------------------------
    Theme (cozy light + rich dark) with <html data-theme="">
@@ -191,11 +192,30 @@ const FloatingOrb: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 /* -------------------------------------------
-   HERO
+   HER
 ------------------------------------------- */
 export default function Hero() {
   const { theme, setTheme } = useTheme();
   const switchTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  // const { lang, setLang } = useLang();
+  const t = useTranslate();
+  const stats = [
+    {
+      k: t.hero.stats.frame_time_unit, // "ms" | "мс"
+      v: t.hero.stats.frame_time_value, // "~60"
+      label: t.hero.stats.frame_time_label, // "Frame time" | "Время кадра"
+    },
+    {
+      k: t.hero.stats.runtime_deps_unit, // "" (пусто — без единиц)
+      v: t.hero.stats.runtime_deps_value, // "0"
+      label: t.hero.stats.runtime_deps_label, // "Runtime deps" | "Зависимости рантайма"
+    },
+    {
+      k: t.hero.stats.vibes_unit, // "⭐"
+      v: t.hero.stats.vibes_value, // "WOW"
+      label: t.hero.stats.vibes_label, // "Vibes" | "Вайб"
+    },
+  ];
 
   // prefer reduced motion
   const prefersReducedMotion = useMemo(() => {
@@ -259,7 +279,7 @@ export default function Hero() {
               <Sparkles className="size-5 text-[var(--fg)]" />
             </div>
             <span className="text-sm font-medium tracking-wide text-[var(--muted)]">
-              ShiruiSan · Lory.Lab
+              {t.brand} · Lory.Lab
             </span>
           </div>
 
@@ -283,7 +303,7 @@ export default function Hero() {
         <div className="grid flex-1 content-center items-center gap-10 md:grid-cols-2">
           <div>
             <motion.h1
-              className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl"
+              className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl"
               initial={
                 prefersReducedMotion ? undefined : (fadeUp.initial as any)
               }
@@ -291,9 +311,9 @@ export default function Hero() {
                 prefersReducedMotion ? undefined : (fadeUp.animate as any)
               }
             >
-              Build delightful UIs with
-              <span className="ml-3 inline-block rounded-2xl bg-gradient-to-r from-[var(--primary)] to-pink-400 px-3 py-1 mt-4 text-[var(--primary-ink)]">
-                WOW
+              {t.hero.title_html1}
+              <span className="ml-3 inline-block md:text-4xl rounded-2xl bg-gradient-to-r from-[var(--primary)] to-pink-400 px-3 py-1 mt-4 text-[var(--primary-ink)]">
+                {t.hero.title_html2}
               </span>
             </motion.h1>
 
@@ -316,8 +336,7 @@ export default function Hero() {
                     }
               }
             >
-              Subtle motion, cozy colors, and a calm particle field. Drop this
-              hero into your page and tune the slots below.
+              {t.hero.subtitle}
             </motion.p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -332,7 +351,7 @@ export default function Hero() {
                 className="btn-primary inline-flex items-center gap-2 rounded-2xl bg-[var(--primary)] px-5 py-3 font-semibold text-[var(--primary-ink)] shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] hover:brightness-110"
               >
                 <Rocket className="size-5" />
-                Get started
+                {t.hero.primary_cta}
               </motion.a>
 
               <motion.a
@@ -357,45 +376,21 @@ export default function Hero() {
                 href="#learn-more"
                 className="inline-flex items-center gap-2 rounded-2xl border border-transparent bg-[var(--bg-elev)] px-5 py-3 font-medium text-[var(--fg)] shadow-sm transition hover:border-[var(--ring)] hover:shadow-md"
               >
-                Learn more
+                {t.hero.secondary_cta}
                 <ChevronRight className="size-4" />
               </motion.a>
             </div>
 
             {/* Stats row */}
             <div className="mt-10 grid max-w-md grid-cols-3 gap-4">
-              {[
-                { k: "ms", v: "~60", label: "Frame time" },
-                { k: "kb", v: "0", label: "Runtime deps" },
-                { k: "⭐", v: "WOW", label: "Vibes" },
-              ].map((s, i) => (
+              {stats.map((s, i) => (
                 <motion.div
-                  key={s.k}
-                  className="glass rounded-2xl p-4 text-center shadow-md"
-                  initial={
-                    prefersReducedMotion
-                      ? undefined
-                      : { opacity: 0, y: 16, scale: 0.98 }
-                  }
-                  animate={
-                    prefersReducedMotion
-                      ? undefined
-                      : {
-                          opacity: 1,
-                          y: 0,
-                          scale: 1,
-                          transition: {
-                            delay: 0.08 + i * 0.06,
-                            type: "spring",
-                            stiffness: 140,
-                            damping: 18,
-                          },
-                        }
-                  }
+                  key={i}
+                  className="glass rounded-2xl p-4 text-center shadow-md" /* ... */
                 >
                   <div className="text-2xl font-extrabold tracking-tight">
                     {s.v}
-                    {s.k}
+                    {s.k} {/* было: {s.v}{s.k} — оставляем логику */}
                   </div>
                   <div className="mt-1 text-xs text-[var(--muted)]">
                     {s.label}
@@ -425,26 +420,25 @@ export default function Hero() {
 
               <div className="relative z-10 flex items-start justify-between gap-4">
                 <div>
+                  {/* текст "Preview" */}
                   <div className="text-sm font-semibold text-[var(--muted)]">
-                    Preview
+                    {t.hero.preview.header_kicker}
                   </div>
+                  {/* текст "Cozy Light / Rich Dark" */}
                   <div className="mt-2 text-2xl font-extrabold tracking-tight">
-                    Cozy Light / Rich Dark
+                    {t.hero.preview.header_title}
                   </div>
                 </div>
+                {/* бейдж "Themed" */}
                 <div className="rounded-xl bg-[var(--bg)] px-3 py-1 text-xs text-[var(--muted)] shadow-inner">
-                  Themed
+                  {t.hero.preview.badge}
                 </div>
               </div>
 
               <div className="mt-6 grid gap-3">
-                {[
-                  "Neutral parchment base",
-                  "Warm grays for copy",
-                  "Violet accents with softness",
-                ].map((t, i) => (
+                {t.hero.preview.bullets.map((bullet, i) => (
                   <motion.div
-                    key={t}
+                    key={bullet}
                     initial={
                       prefersReducedMotion ? undefined : { opacity: 0, x: -10 }
                     }
@@ -464,7 +458,7 @@ export default function Hero() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="size-2.5 shrink-0 rounded-full bg-[var(--primary)]" />
-                      <p className="text-sm text-[var(--muted)]">{t}</p>
+                      <p className="text-sm text-[var(--muted)]">{bullet}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -472,20 +466,15 @@ export default function Hero() {
 
               <div className="mt-6 flex items-center justify-between">
                 <div className="text-xs text-[var(--muted)]">
-                  Particles pause on background tabs
+                  {t.hero.preview.note_particles}
                 </div>
                 <div className="text-xs text-[var(--muted)]">
-                  HiDPI crisp lines
+                  {t.hero.preview.note_hidpi}
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-
-        {/* Footer note */}
-        {/* <div className="mt-16 text-center text-xs text-[var(--muted)]">
-          Drop-in hero · Tailwind + Framer Motion · Particles integrated
-        </div> */}
       </div>
     </div>
   );

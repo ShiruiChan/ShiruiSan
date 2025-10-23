@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { experience } from "@/shared/data";
-
+// ы
 export function ExperienceSection() {
   return (
     <div className="grid md:grid-cols-2 gap-6">

@@ -5,6 +5,7 @@ export function HeaderRow({
   title: string;
   subtitle?: string;
 }) {
+  //ы
   return (
     <div className="flex items-end justify-between gap-4">
       <div>

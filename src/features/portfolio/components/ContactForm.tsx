@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Mail, Phone } from "lucide-react";
 import { profile } from "@/shared/profile";
-
+// ы
 export function ContactForm({
   t,
 }: {
@@ -45,17 +45,6 @@ export function ContactForm({
                 rel="noreferrer"
               >
                 GitHub
-              </a>
-            </p>
-            <p className="flex items-center gap-2">
-              <Linkedin className="w-4 h-4 text-primary" />{" "}
-              <a
-                className="hover:underline"
-                href={profile.contacts.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
               </a>
             </p>
           </div>

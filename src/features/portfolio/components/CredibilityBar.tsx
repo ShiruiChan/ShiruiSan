@@ -16,7 +16,7 @@ export function CredibilityBar() {
           >
             <div className="h-10 rounded bg-muted/60 grid place-items-center px-3 transition group-hover:bg-muted">
               {l.icon ? (
-                // eslint-disable-next-line @next/next/no-img-element
+                // eslint-disable-next-line @next/next/no-img-elemen
                 <img
                   src={l.icon}
                   alt={l.label}

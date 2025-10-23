@@ -4,6 +4,7 @@ export function TestimonialStrip({
 }: {
   testimonials: { text: string; name: string; role: string }[];
 }) {
+  //ы
   return (
     <div className="relative mt-8 overflow-hidden">
       <div className="grid sm:grid-cols-3 gap-6">

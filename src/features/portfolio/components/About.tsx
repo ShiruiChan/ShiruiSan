@@ -1,5 +1,5 @@
 import { Stat } from "./Stat";
-
+// ы
 export function About() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">

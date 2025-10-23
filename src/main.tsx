@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App.tsx";
 import { SeoHead } from "./features/portfolio/SeoHead.tsx";
 import { LangProvider } from "@/hooks/useLang";
+import { Theme } from "@radix-ui/themes";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <LangProvider>
-      <SeoHead />
-      <App />
-    </LangProvider>
+    <Theme>
+      <LangProvider>
+        <SeoHead />
+        <App />
+      </LangProvider>
+    </Theme>
   </StrictMode>
 );

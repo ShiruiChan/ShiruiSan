@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, DollarSign } from "lucide-react";
 import { profile } from "@/shared/profile";
 import { useAnalytics } from "@/hooks/useAnalytics";
-
+// ы
 export function ServicesGrid() {
   const { track } = useAnalytics();
 

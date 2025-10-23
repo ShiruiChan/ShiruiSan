@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Sparkles } from "lucide-react";
 import { skills } from "@/shared/data";
-
+// ы
 export function AboutContent() {
   return (
     <div className="grid md:grid-cols-2 gap-8 items-start">

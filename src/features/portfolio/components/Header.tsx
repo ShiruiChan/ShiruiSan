@@ -5,6 +5,7 @@ import { NAV_SECTIONS } from "@/shared/data";
 import { useTheme } from "@/hooks/useTheme";
 import { useLang } from "@/hooks/useLang";
 import { getNavLabel } from "@/shared/navLabels";
+import { Moon, Sun } from "lucide-react";
 
 function useScrollSpy(ids: string[], offset = 120) {
   const [active, setActive] = useState<string>(ids[0] || "");
@@ -168,7 +169,7 @@ export default function Header({
             </div>
           </div>
 
-          {/* mobile burger */}
+          {/* mobile buger */}
           <button
             className="inline-flex items-center justify-center rounded-xl p-2 md:hidden"
             aria-label="Toggle menu"
@@ -256,16 +257,18 @@ export default function Header({
                   </div>
 
                   <button
-                    aria-label="Toggle theme"
                     onClick={() =>
-                      setTheme(theme === "dark" ? "light" : "dark")
-                    }
-                    className="inline-flex h-9 flex-1 items-center justify-center rounded-xl border border-slate-300/70 text-slate-700 hover:bg-slate-100"
-                    title={
-                      theme === "dark" ? "Switch to Light" : "Switch to Dark"
-                    }
+                      setTheme(theme === "light" ? "dark" : "light")
+                    } // ← тут переключаем
+                    className="rounded-xl border border-slate-300 dark:border-slate-600 p-2 transition hover:bg-slate-100 dark:hover:bg-slate-700/50"
+                    aria-label="Toggle theme"
+                    title="Toggle theme"
                   >
-                    {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
+                    {theme === "light" ? (
+                      <Moon className="h-4 w-4 text-slate-700" />
+                    ) : (
+                      <Sun className="h-4 w-4 text-slate-200" />
+                    )}
                   </button>
                 </div>
 
