@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, DollarSign, Sparkles } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import { profile } from "@/shared/profile";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useTranslate } from "@/hooks/useTranslate";
