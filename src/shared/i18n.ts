@@ -8,7 +8,23 @@ export const i18n = {
       about: "About",
       testimonials: "Testimonials",
       contact: "Contact",
-      // blog: "Blog", // если используешь
+    },
+    about: {
+      principles_title: "Principles",
+      principles: {
+        clarity: "Design for clarity first; delight second.",
+        accessibility: "Accessibility is a baseline, not a feature.",
+        polish:
+          "Polish the edges: empty states, skeletons, micro-interactions.",
+      },
+      stack_title: "Stack",
+      highlights_title: "Highlights",
+      highlights: {
+        "design-system":
+          "Designed/implemented design system adopted by 3 teams",
+        lighthouse: "95–100 Lighthouse scores for key pages",
+        performance: "Drove SSR/ISR migration and reduced TTFB by 30%",
+      },
     },
     services: {
       service1: {
@@ -53,11 +69,21 @@ export const i18n = {
       testimonials_title: "Clients say",
     },
     contact: {
-      title: "Let’s build something great",
+      title: "Let's build something great",
+      subtitle: "Free consultation • Quick response • No spam, ever",
       name: "Your name",
+      namePlaceholder: "e.g., Alex Johnson",
       email: "Email",
-      message: "Message",
+      emailPlaceholder: "alex@company.com",
+      message: "Tell me about your project",
+      messagePlaceholder: "I need a landing page for my SaaS product...",
       send: "Send message",
+      sending: "Sending...",
+      success: "Message sent! I'll reply within 24 hours.",
+      error: "Something went wrong. Try Telegram?",
+      availability: "Available for new projects",
+      responseTime: "Typical response time",
+      or: "Or reach me directly:",
     },
     brand: "ShiruiSan",
     tagline:
@@ -70,7 +96,7 @@ export const i18n = {
       github: "GitHub",
     },
     cta: {
-      text: "Have a project in mind? Let’s build something great.",
+      text: "Have a project in mind? Let's build something great.",
       start: "Start a project",
       back: "Back to top ↑",
     },
@@ -81,34 +107,23 @@ export const i18n = {
       lang: "Language",
     },
     hero: {
-      // заголовок H1 разбит на две части: первая — обычный текст, вторая — внутри цветного бейджа
       title_html1: "Interfaces that respect users —",
       title_html2: "fast, stable, precise",
-
-      // подзаголовок (одно предложение, конкретика без воды)
       subtitle:
         "Subtle motion, dependable typography, and measured performance",
-
-      // CTA-кнопки
       primary_cta: "Get started",
       secondary_cta: "Learn more",
-
-      // метрики в статистическом блоке
       stats: {
         frame_time_value: "~60",
         frame_time_unit: "ms",
         frame_time_label: "Frame time",
-
         runtime_deps_value: "0",
         runtime_deps_unit: "",
         runtime_deps_label: "Runtime deps",
-
         vibes_value: "WOW",
         vibes_unit: "⭐",
         vibes_label: "Vibes",
       },
-
-      // правый превью-блок
       preview: {
         header_kicker: "Preview",
         header_title: "Cozy Light / Rich Dark",
@@ -121,18 +136,14 @@ export const i18n = {
         note_particles: "Particles pause on background tabs",
         note_hidpi: "HiDPI crisp lines",
       },
-
-      // подсказки/лейблы, если пригодятся
       a11y: {
         toggle_theme: "Toggle theme",
       },
     },
-
-    // общий словарь для подписей и семантики
     common: {
       made_for: "Made for quality work",
       byline: "Engineered details. No surprises.",
-      popular: "Popular", // ← добавили
+      popular: "Popular",
     },
   },
   ru: {
@@ -144,7 +155,22 @@ export const i18n = {
       about: "Обо мне",
       testimonials: "Отзывы",
       contact: "Контакты",
-      // blog: "Блог",
+    },
+    about: {
+      principles_title: "Принципы",
+      principles: {
+        clarity: "Дизайн для ясности прежде всего; восторг — потом.",
+        accessibility: "Доступность — это базовая линия, а не фича.",
+        polish:
+          "Полируй края: пустые состояния, скелетоны, микро-взаимодействия.",
+      },
+      stack_title: "Стек",
+      highlights_title: "Достижения",
+      highlights: {
+        "design-system": "Спроектировал дизайн-систему, принятую 3 командами",
+        lighthouse: "95–100 баллов Lighthouse для ключевых страниц",
+        performance: "Провёл миграцию на SSR/ISR и сократил TTFB на 30%",
+      },
     },
     services: {
       service1: {
@@ -185,27 +211,21 @@ export const i18n = {
     hero: {
       title_html1: "Интерфейсы с уважением к пользователю —",
       title_html2: "быстро, стабильно, точно",
-
       subtitle:
         "Тонкие анимации, надёжная типографика и измеримая производительность",
-
       primary_cta: "Начать",
       secondary_cta: "Подробнее",
-
       stats: {
         frame_time_value: "~60",
         frame_time_unit: "мс",
         frame_time_label: "Время кадра",
-
         runtime_deps_value: "0",
         runtime_deps_unit: "",
         runtime_deps_label: "Зависимости рантайма",
-
         vibes_value: "WOW",
         vibes_unit: "⭐",
         vibes_label: "Вайб",
       },
-
       preview: {
         header_kicker: "Превью",
         header_title: "Cozy Light / Rich Dark",
@@ -218,7 +238,6 @@ export const i18n = {
         note_particles: "Частицы ставятся на паузу на фоновых вкладках",
         note_hidpi: "Чёткие линии на HiDPI",
       },
-
       a11y: {
         toggle_theme: "Переключить тему",
       },
@@ -226,7 +245,7 @@ export const i18n = {
     common: {
       made_for: "Для работы на качество",
       byline: "Инженерные детали. Без сюрпризов.",
-      popular: "Популярный", // ← добавили
+      popular: "Популярный",
     },
     sections: {
       projects_title: "Проекты",
@@ -237,10 +256,20 @@ export const i18n = {
     },
     contact: {
       title: "Давайте сделаем крутой продукт",
+      subtitle: "Бесплатная консультация • Быстрый ответ • Никакого спама",
       name: "Ваше имя",
+      namePlaceholder: "напр., Алекс Иванов",
       email: "Почта",
-      message: "Сообщение",
-      send: "Отправить",
+      emailPlaceholder: "alex@company.com",
+      message: "Расскажите о вашем проекте",
+      messagePlaceholder: "Мне нужен лендинг для моего SaaS продукта...",
+      send: "Отправить сообщение",
+      sending: "Отправляю...",
+      success: "Сообщение отправлено! Отвечу в течение 24 часов.",
+      error: "Что-то пошло не так. Попробуйте в Telegram?",
+      availability: "Доступен для новых проектов",
+      responseTime: "Обычное время ответа",
+      or: "Или свяжитесь напрямую:",
     },
     brand: "ShiruiSan",
     tagline:
@@ -265,4 +294,5 @@ export const i18n = {
     },
   },
 };
+
 export type Lang = keyof typeof i18n;

@@ -9,8 +9,10 @@ export const profile = {
     phone: "+7 (914) 276-75-20",
     github: "https://github.com/ShiruiChan",
     linkedin: "https://linkedin.com/in/yourname",
-    website: "https://yourdomain.com",
+    website: "https://shirui-san.vercel.app",
+    telegram: "https://t.me/ShiruiSan",
   },
   resumeUrl: "/resume.pdf",
   calendly: "https://calendly.com/yourname/intro",
+  responseTime: "lox",
 };

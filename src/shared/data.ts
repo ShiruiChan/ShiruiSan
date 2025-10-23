@@ -185,6 +185,27 @@ export type CaseMetric = {
   image?: string;
 };
 
+export const highlights = [
+  {
+    key: "design-system",
+    icon: "Sparkles",
+  },
+  {
+    key: "lighthouse",
+    icon: "Sparkles",
+  },
+  {
+    key: "performance",
+    icon: "Sparkles",
+  },
+];
+
+export const principles = [
+  { key: "clarity" },
+  { key: "accessibility" },
+  { key: "polish" },
+];
+
 export const CASES: CaseMetric[] = [
   {
     title: "Yakutia Tours — clear booking flow",

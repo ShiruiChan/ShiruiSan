@@ -3,7 +3,7 @@ import { Section } from "./components/Section";
 import { About } from "./components/About";
 import { AboutContent } from "./components/AboutContent";
 import { ProjectsGrid } from "./components/ProjectsGrid";
-import { ExperienceSection } from "./components/ExperienceSection";
+// import { ExperienceSection } from "./components/ExperienceSection";
 // import { BlogSection } from "./components/BlogSection";
 import { ContactForm } from "./components/ContactForm";
 import { useLang } from "@/hooks/useLang";
@@ -12,8 +12,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 // import { CredibilityBar } from "./components/CredibilityBar";
 import { ServicesGrid } from "./components/ServicesGrid";
-import { TESTIMONIALS } from "@/shared/data";
-import { TestimonialStrip } from "./components/TestimonialStrip";
+// import { TESTIMONIALS } from "@/shared/data";
+// import { TestimonialStrip } from "./components/TestimonialStrip";
 import Hero from "@/components/Hero";
 
 export default function PortfolioApp() {
@@ -44,17 +44,17 @@ export default function PortfolioApp() {
           <ServicesGrid />
         </Section>
 
-        <Section id="experience" title={t.nav.experience}>
+        {/* <Section id="experience" title={t.nav.experience}>
           <ExperienceSection />
-        </Section>
+        </Section> */}
 
         <Section id="about" title={t.nav.about}>
           <AboutContent />
         </Section>
 
-        <Section id="testimonials" title={t.sections.testimonials_title}>
+        {/* <Section id="testimonials" title={t.sections.testimonials_title}>
           <TestimonialStrip testimonials={TESTIMONIALS} />
-        </Section>
+        </Section> */}
 
         {/* Если решишь вернуть блог: */}
         {/* <Section id="blog" title={t.nav.blog}>
