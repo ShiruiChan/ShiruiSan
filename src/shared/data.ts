@@ -1,5 +1,3 @@
-import { findImageForTitle, slugify } from "./img-map";
-
 export const skills = [
   "React",
   "TypeScript",
