@@ -10,6 +10,42 @@ export const i18n = {
       contact: "Contact",
       // blog: "Blog", // если используешь
     },
+    services: {
+      service1: {
+        name: "Premium Landing Page",
+        price: "₽190,000",
+        desc: "A high-converting landing page with persuasive copy, modern design, and analytics. Fixed price, 2-week delivery.",
+        bullets: [
+          "Copywriting + prototype + premium UI",
+          "Lighthouse 95+ / accessibility included",
+          "Analytics and event tracking setup",
+        ],
+        cta: "Order Now",
+      },
+      service2: {
+        name: "Portfolio That Sells",
+        price: "₽140,000",
+        desc: "A personal brand website with cases, testimonials, and booking — all optimized for conversion.",
+        bullets: [
+          "Case and project templates",
+          "Testimonials section and client logos",
+          "SEO, Open Graph, and structured data",
+        ],
+        cta: "Get Started",
+        highlight: true,
+      },
+      service3: {
+        name: "Product UI Redesign",
+        price: "₽290,000",
+        desc: "A design sprint to revamp a key user flow or dashboard. UX research + production-ready code.",
+        bullets: [
+          "Animations and microinteractions",
+          "Design tokens and system setup",
+          "Production implementation via PR",
+        ],
+        cta: "Book a Sprint",
+      },
+    },
     sections: {
       projects_title: "Projects",
       services_title: "Choose your outcome",
@@ -96,6 +132,7 @@ export const i18n = {
     common: {
       made_for: "Made for quality work",
       byline: "Engineered details. No surprises.",
+      popular: "Popular", // ← добавили
     },
   },
   ru: {
@@ -108,6 +145,42 @@ export const i18n = {
       testimonials: "Отзывы",
       contact: "Контакты",
       // blog: "Блог",
+    },
+    services: {
+      service1: {
+        name: "Посадочная страница Premium",
+        price: "190 000 ₽",
+        desc: "Высококонверсионная посадочная страница с продающим текстом, современным дизайном и аналитикой. Фиксированная цена, срок 2 недели.",
+        bullets: [
+          "Копирайтинг + прототип + премиум UI",
+          "Lighthouse 95+ / доступность включена",
+          "Настройка аналитики и событий",
+        ],
+        cta: "Заказать",
+      },
+      service2: {
+        name: "Портфолио, которое продаёт",
+        price: "140 000 ₽",
+        desc: "Персональный сайт-бренд: кейсы, отзывы, онлайн-запись — всё оптимизировано под конверсию.",
+        bullets: [
+          "Шаблоны кейсов и проектов",
+          "Блок отзывов и логотипы клиентов",
+          "SEO, Open Graph, микроразметка",
+        ],
+        cta: "Начать сейчас",
+        highlight: true,
+      },
+      service3: {
+        name: "Редизайн продуктового UI",
+        price: "290 000 ₽",
+        desc: "Спринт на редизайн ключевого сценария или дашборда. UX-исследование + код в продакшене.",
+        bullets: [
+          "Анимации и микро-взаимодействия",
+          "Дизайн-токены и система",
+          "Внедрение в продакшн через PR",
+        ],
+        cta: "Забронировать спринт",
+      },
     },
     hero: {
       title_html1: "Интерфейсы с уважением к пользователю —",
@@ -150,10 +223,10 @@ export const i18n = {
         toggle_theme: "Переключить тему",
       },
     },
-
     common: {
       made_for: "Для работы на качество",
       byline: "Инженерные детали. Без сюрпризов.",
+      popular: "Популярный", // ← добавили
     },
     sections: {
       projects_title: "Проекты",
