@@ -41,7 +41,7 @@ export default function PortfolioApp() {
         </Section>
 
         <Section id="services" title={t.sections.services_title}>
-          <HeaderRow title="" subtitle={t.sections.services_subtitle} />
+          {/* <HeaderRow title="" subtitle={t.sections.services_subtitle} /> */}
           <ServicesGrid />
         </Section>
 
