@@ -40,8 +40,7 @@ export type Project = {
 const baseProjects: Project[] = [
   {
     title: "Tours of Yakutia",
-    blurb:
-      "Сайт туров по Якутии с чистой структурой, фокусом на заявки и быстрым рендерингом.",
+    blurb: "Первый заказ, низкая скорость рендеринга. Сайт для туров по Якутии",
     tags: [
       "React",
       "Vite",
