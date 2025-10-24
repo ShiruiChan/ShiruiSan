@@ -2,16 +2,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Sparkles } from "lucide-react";
 import { skills, highlights, principles } from "@/shared/data";
-import { i18n } from "@/shared/i18n";
-import type { Lang } from "@/shared/i18n";
+import { useLang } from "@/hooks/useLang";
+import { useTranslate } from "@/hooks/useTranslate";
 import { motion } from "framer-motion";
 
-interface AboutContentProps {
-  lang?: Lang;
-}
-
-export function AboutContent({ lang = "en" }: AboutContentProps) {
-  const t = i18n[lang].about;
+export function AboutContent() {
+  const { lang } = useLang();
+  const t = useTranslate();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,6 +36,7 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
 
   return (
     <motion.div
+      key={lang}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -49,7 +47,7 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
         {/* Principles Section */}
         <div className="group">
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">
-            {t.principles_title}
+            {t.about.principles_title}
           </h3>
           <ul className="space-y-4">
             {principles.map((principle) => (
@@ -60,7 +58,11 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
               >
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mt-2 group-hover/item:scale-150 transition-transform" />
                 <span className="flex-1 leading-relaxed group-hover/item:text-foreground transition-colors">
-                  {t.principles[principle.key as keyof typeof t.principles]}
+                  {
+                    t.about.principles[
+                      principle.key as keyof typeof t.about.principles
+                    ]
+                  }
                 </span>
               </motion.li>
             ))}
@@ -70,7 +72,7 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
         {/* Stack Section */}
         <div>
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">
-            {t.stack_title}
+            {t.about.stack_title}
           </h3>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill, index) => (
@@ -100,7 +102,7 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <span className="inline-block w-1 h-8 bg-gradient-to-b from-primary to-accent-foreground rounded-full" />
-              {t.highlights_title}
+              {t.about.highlights_title}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -120,7 +122,11 @@ export function AboutContent({ lang = "en" }: AboutContentProps) {
                     <Sparkles className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   </motion.div>
                   <span className="text-sm leading-relaxed text-muted-foreground group-hover/highlight:text-foreground transition-colors">
-                    {t.highlights[highlight.key as keyof typeof t.highlights]}
+                    {
+                      t.about.highlights[
+                        highlight.key as keyof typeof t.about.highlights
+                      ]
+                    }
                   </span>
                 </motion.li>
               ))}
