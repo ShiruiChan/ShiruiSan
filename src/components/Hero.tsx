@@ -1,36 +1,9 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { Sun, Moon, ChevronRight, Rocket, Sparkles } from "lucide-react";
 import { useTranslate } from "@/hooks/useTranslate";
-
-/* -------------------------------------------
-   Theme (cozy light + rich dark) with <html data-theme="">
-------------------------------------------- */
-function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    if (typeof window === "undefined") return "dark";
-    const stored = localStorage.getItem("theme");
-    if (stored === "light" || stored === "dark") return stored;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    return prefersDark ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    root.setAttribute("data-theme", theme);
-    try {
-      localStorage.setItem("theme", theme);
-    } catch {
-      /* ignore */
-    }
-  }, [theme]);
-
-  return { theme, setTheme };
-}
+import { useTheme } from "@/hooks/useTheme";
 
 /* -------------------------------------------
    Particles Background (HiDPI-aware + pause on hidden tab)
@@ -185,7 +158,7 @@ const FloatingOrb: React.FC<{ className?: string }> = ({ className }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 0.75, y: 0 }}
     transition={{ duration: 1.2, delay: 0.2 }}
-    className={`pointer-events-none absolute aspect-square w-[36rem] rounded-full blur-3xl ${
+    className={`pointer-events-none absolute aspect-square w-xl rounded-full blur-3xl ${
       className ?? ""
     }`}
   />
@@ -224,7 +197,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[var(--bg)] text-[var(--fg)] antialiased">
+    <div className="relative min-h-screen bg-[--bg] text-[--fg] antialiased">
       {/* Global theme CSS variables */}
       <style>{`
         :root[data-theme='light'] {
@@ -255,13 +228,13 @@ export default function Hero() {
           backdrop-filter: saturate(140%) blur(12px);
           -webkit-backdrop-filter: saturate(140%) blur(12px);
         }
-        .ringed { box-shadow: 0 0 0 6px var(--ring); }
+        .ringed { box-shadow: 0 0 0 6px --ring; }
       `}</style>
 
       {/* Background layer: gradient orbs + particles */}
       <div className="absolute inset-0 overflow-hidden">
-        <FloatingOrb className="left-[-10%] top-[-10%] bg-gradient-to-br from-[rgba(124,92,255,0.25)] to-[rgba(255,182,193,0.2)]" />
-        <FloatingOrb className="right-[-15%] bottom-[-15%] bg-gradient-to-tr from-[rgba(61,199,255,0.2)] to-[rgba(139,92,246,0.25)]" />
+        <FloatingOrb className="left-[-10%] top-[-10%] bg-linear-to-br from-[rgba(124,92,255,0.25)] to-[rgba(255,182,193,0.2)]" />
+        <FloatingOrb className="right-[-15%] bottom-[-15%] bg-linear-to-tr from-[rgba(61,199,255,0.2)] to-[rgba(139,92,246,0.25)]" />
         <ParticlesBackground
           color={theme === "dark" ? "139, 92, 246" : "124, 92, 255"}
         />
@@ -276,16 +249,16 @@ export default function Hero() {
               className="glass ringed grid size-9 place-items-center rounded-xl"
               aria-hidden
             >
-              <Sparkles className="size-5 text-[var(--fg)]" />
+              <Sparkles className="size-5 text-[--fg]" />
             </div>
-            <span className="text-sm font-medium tracking-wide text-[var(--muted)]">
+            <span className="text-sm font-medium tracking-wide text-[--muted]">
               {t.brand} · Lory.Lab
             </span>
           </div>
 
           <button
             onClick={switchTheme}
-            className="group flex items-center gap-2 rounded-2xl border border-transparent bg-[var(--bg-elev)] px-3 py-2 text-sm shadow-sm transition hover:border-[var(--ring)] hover:shadow-md"
+            className="group flex items-center gap-2 rounded-2xl border border-transparent bg-[--bg-elev] px-3 py-2 text-sm shadow-sm transition hover:border-[--ring] hover:shadow-md"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
@@ -293,7 +266,7 @@ export default function Hero() {
             ) : (
               <Moon className="size-4" />
             )}
-            <span className="text-[var(--muted)]">
+            <span className="text-[--muted]">
               {theme === "dark" ? "Cozy Light" : "Rich Dark"}
             </span>
           </button>
@@ -312,13 +285,13 @@ export default function Hero() {
               }
             >
               {t.hero.title_html1}
-              <span className="ml-3 inline-block md:text-4xl rounded-2xl bg-gradient-to-r from-[var(--primary)] to-pink-400 px-3 py-1 mt-4 text-[var(--primary-ink)]">
+              <span className="ml-3 inline-block md:text-4xl rounded-2xl bg-linear-to-r from-[--primary] to-pink-400 px-3 py-1 mt-4 text-[--primary-ink]">
                 {t.hero.title_html2}
               </span>
             </motion.h1>
 
             <motion.p
-              className="mt-5 max-w-prose text-lg text-[var(--muted)] md:text-xl"
+              className="mt-5 max-w-prose text-lg text-[--muted] md:text-xl"
               initial={
                 prefersReducedMotion ? undefined : (fadeUp.initial as any)
               }
@@ -348,7 +321,7 @@ export default function Hero() {
                   prefersReducedMotion ? undefined : (pop.animate as any)
                 }
                 href="#get-started"
-                className="btn-primary inline-flex items-center gap-2 rounded-2xl bg-[var(--primary)] px-5 py-3 font-semibold text-[var(--primary-ink)] shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] hover:brightness-110"
+                className="btn-primary inline-flex items-center gap-2 rounded-2xl bg-[--primary] px-5 py-3 font-semibold text-[--primary-ink] shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--ring] hover:brightness-110"
               >
                 <Rocket className="size-5" />
                 {t.hero.primary_cta}
@@ -374,7 +347,7 @@ export default function Hero() {
                       } as any)
                 }
                 href="#learn-more"
-                className="inline-flex items-center gap-2 rounded-2xl border border-transparent bg-[var(--bg-elev)] px-5 py-3 font-medium text-[var(--fg)] shadow-sm transition hover:border-[var(--ring)] hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-2xl border border-transparent bg-[--bg-elev] px-5 py-3 font-medium text-[--fg] shadow-sm transition hover:border-[--ring] hover:shadow-md"
               >
                 {t.hero.secondary_cta}
                 <ChevronRight className="size-4" />
@@ -392,9 +365,7 @@ export default function Hero() {
                     {s.v}
                     {s.k} {/* было: {s.v}{s.k} — оставляем логику */}
                   </div>
-                  <div className="mt-1 text-xs text-[var(--muted)]">
-                    {s.label}
-                  </div>
+                  <div className="mt-1 text-xs text-[--muted]">{s.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -415,13 +386,13 @@ export default function Hero() {
             }
           >
             <div className="glass ringed relative rounded-3xl p-6 shadow-2xl">
-              <div className="pointer-events-none absolute -left-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-[rgba(124,92,255,0.4)] to-[rgba(255,182,193,0.25)] blur-2xl" />
-              <div className="pointer-events-none absolute -bottom-10 -right-6 h-28 w-28 rounded-full bg-gradient-to-br from-[rgba(61,199,255,0.35)] to-[rgba(139,92,246,0.25)] blur-2xl" />
+              <div className="pointer-events-none absolute -left-8 -top-8 h-24 w-24 rounded-full bg-linear-to-br from-[rgba(124,92,255,0.4)] to-[rgba(255,182,193,0.25)] blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-10 -right-6 h-28 w-28 rounded-full bg-linear-to-br from-[rgba(61,199,255,0.35)] to-[rgba(139,92,246,0.25)] blur-2xl" />
 
               <div className="relative z-10 flex items-start justify-between gap-4">
                 <div>
                   {/* текст "Preview" */}
-                  <div className="text-sm font-semibold text-[var(--muted)]">
+                  <div className="text-sm font-semibold text-[--muted]">
                     {t.hero.preview.header_kicker}
                   </div>
                   {/* текст "Cozy Light / Rich Dark" */}
@@ -430,7 +401,7 @@ export default function Hero() {
                   </div>
                 </div>
                 {/* бейдж "Themed" */}
-                <div className="rounded-xl bg-[var(--bg)] px-3 py-1 text-xs text-[var(--muted)] shadow-inner">
+                <div className="rounded-xl bg-[--bg] px-3 py-1 text-xs text-[--muted] shadow-inner">
                   {t.hero.preview.badge}
                 </div>
               </div>
@@ -454,21 +425,21 @@ export default function Hero() {
                             },
                           }
                     }
-                    className="rounded-xl border border-[var(--ring)]/40 bg-[var(--bg)]/60 p-4 shadow-sm"
+                    className="rounded-xl border border-[--ring]/40 bg-[--bg]/60 p-4 shadow-sm"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="size-2.5 shrink-0 rounded-full bg-[var(--primary)]" />
-                      <p className="text-sm text-[var(--muted)]">{bullet}</p>
+                      <div className="size-2.5 shrink-0 rounded-full bg-[--primary]" />
+                      <p className="text-sm text-[--muted]">{bullet}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
               <div className="mt-6 flex items-center justify-between">
-                <div className="text-xs text-[var(--muted)]">
+                <div className="text-xs text-[--muted]">
                   {t.hero.preview.note_particles}
                 </div>
-                <div className="text-xs text-[var(--muted)]">
+                <div className="text-xs text-[--muted]">
                   {t.hero.preview.note_hidpi}
                 </div>
               </div>
