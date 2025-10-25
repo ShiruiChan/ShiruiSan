@@ -15,7 +15,6 @@ import { ServicesGrid } from "./components/ServicesGrid";
 // import { TESTIMONIALS } from "@/shared/data";
 // import { TestimonialStrip } from "./components/TestimonialStrip";
 import Hero from "@/components/Hero";
-import { ParallaxHero } from "@/components/ParallaxHero";
 
 export default function PortfolioApp() {
   const { lang } = useLang();
