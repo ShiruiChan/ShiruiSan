@@ -1,8 +1,8 @@
 import React, { useMemo, useRef } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
+  // useScroll,
+  // useTransform,
   type Variants,
   type Transition,
 } from "framer-motion";
@@ -67,17 +67,17 @@ export default function Hero() {
 
   // параллакс
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: ref,
+  //   offset: ["start start", "end start"],
+  // });
 
   // слои: чем больше значение, тем «быстрее» едет при скролле
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]); // заголовок / CTA
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]); // подзаголовок / правая карточка
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, 50]); // фоновые орбы / бейджи / буллеты
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  // const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  // const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // const y3 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  // const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   const stats = [
     {
@@ -104,7 +104,7 @@ export default function Hero() {
   }, []);
 
   // удобные style-хелперы, чтобы не применять трансформации при reduced motion
-  const sLayer = (val: any) => (prefersReducedMotion ? undefined : { y: val });
+  // const sLayer = (val: any) => (prefersReducedMotion ? undefined : { y: val });
 
   return (
     <div
@@ -149,15 +149,15 @@ export default function Hero() {
         {/* орбы двигаются медленнее всех */}
         <FloatingOrb
           className="left-[-10%] top-[-10%] bg-linear-to-br from-[rgba(124,92,255,0.25)] to-[rgba(255,182,193,0.2)]"
-          style={sLayer(y3)}
+          // style={sLayer(y3)}
         />
         <FloatingOrb
           className="right-[-15%] bottom-[-15%] bg-linear-to-tr from-[rgba(61,199,255,0.2)] to-[rgba(139,92,246,0.25)]"
-          style={sLayer(y3)}
+          // style={sLayer(y3)}
         />
         {/* particles можно тоже слегка подвязать */}
         <motion.div
-          style={sLayer(y3)}
+          // style={sLayer(y3)}
           className="absolute inset-0 overflow-hidden"
         >
           <InteractiveParticles />
@@ -167,7 +167,7 @@ export default function Hero() {
         {!prefersReducedMotion && (
           <motion.div
             className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.12),transparent_60%)]"
-            style={{ opacity }}
+            // style={{ opacity }}
           />
         )}
       </div>
@@ -175,12 +175,12 @@ export default function Hero() {
       {/* Content container */}
       <motion.div
         className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-16 md:py-24"
-        style={prefersReducedMotion ? undefined : { opacity, scale }}
+        // style={prefersReducedMotion ? undefined : { opacity, scale }}
       >
         {/* Top bar */}
         <motion.div
           className="mb-14 flex items-center justify-between"
-          style={sLayer(y3)}
+          // style={sLayer(y3)}
         >
           <div className="flex items-center gap-3">
             <div
@@ -222,7 +222,7 @@ export default function Hero() {
               animate={
                 prefersReducedMotion ? undefined : (fadeUp.animate as any)
               }
-              style={sLayer(y1)}
+              // style={sLayer(y1)}
             >
               {t.hero.title_html1}{" "}
               <MorphingText
@@ -250,14 +250,14 @@ export default function Hero() {
                       },
                     }
               }
-              style={sLayer(y2)}
+              // style={sLayer(y2)}
             >
               {t.hero.subtitle}
             </motion.p>
 
             <motion.div
               className="mt-8 flex flex-wrap gap-4"
-              style={sLayer(y2)}
+              // style={sLayer(y2)}
             >
               <motion.a
                 initial={
@@ -303,7 +303,7 @@ export default function Hero() {
             {/* Stats row */}
             <motion.div
               className="mt-10 grid max-w-md grid-cols-3 gap-4"
-              style={sLayer(y3)}
+              // style={sLayer(y3)}
             >
               {stats.map((s, i) => (
                 <motion.div
@@ -337,16 +337,16 @@ export default function Hero() {
                 ? undefined
                 : { opacity: 1, x: 0, rotate: 0, transition: { ...spring1 } }
             }
-            style={sLayer(y2)}
+            // style={sLayer(y2)}
           >
             <div className="glass ringed relative rounded-3xl p-6 shadow-2xl">
               <motion.div
                 className="pointer-events-none absolute -left-8 -top-8 h-24 w-24 rounded-full bg-linear-to-br from-[rgba(124,92,255,0.4)] to-[rgba(255,182,193,0.25)] blur-2xl"
-                style={sLayer(y3)}
+                // style={sLayer(y3)}
               />
               <motion.div
                 className="pointer-events-none absolute -bottom-10 -right-6 h-28 w-28 rounded-full bg-linear-to-br from-[rgba(61,199,255,0.35)] to-[rgba(139,92,246,0.25)] blur-2xl"
-                style={sLayer(y3)}
+                // style={sLayer(y3)}
               />
 
               <div className="relative z-10 flex items-start justify-between gap-4">
@@ -360,7 +360,7 @@ export default function Hero() {
                 </div>
                 <motion.div
                   className="rounded-xl bg-[--bg] px-3 py-1 text-xs text-[--muted] shadow-inner"
-                  style={sLayer(y3)}
+                  // style={sLayer(y3)}
                 >
                   {t.hero.preview.badge}
                 </motion.div>
@@ -386,7 +386,7 @@ export default function Hero() {
                           }
                     }
                     className="rounded-xl border border-[--ring]/40 bg-[--bg]/60 p-4 shadow-sm"
-                    style={sLayer(y3)}
+                    // style={sLayer(y3)}
                   >
                     <div className="flex items-center gap-3">
                       <div className="size-2.5 shrink-0 rounded-full bg-[--primary]" />
@@ -398,7 +398,7 @@ export default function Hero() {
 
               <motion.div
                 className="mt-6 flex items-center justify-between"
-                style={sLayer(y3)}
+                // style={sLayer(y3)}
               >
                 <div className="text-xs text-[--muted]">
                   {t.hero.preview.note_particles}

@@ -127,7 +127,7 @@ export function ContactForm({
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent-foreground to-primary bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-linear-to-r from-primary via-accent-foreground to-primary bg-clip-text text-transparent">
             {t.title}
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base">
@@ -136,7 +136,7 @@ export function ContactForm({
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <Card className="border-2 hover:border-primary/50 transition-all duration-300 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-hover)] bg-gradient-to-br from-card to-accent/5 overflow-hidden relative">
+          <Card className="border-2 hover:border-primary/50 transition-all duration-300 shadow-[--shadow-soft] hover:shadow-[--shadow-hover] bg-linear-to-br from-card to-accent/5 overflow-hidden relative">
             {/* Decorative gradient blur */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
 
@@ -259,7 +259,7 @@ export function ContactForm({
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full h-12 text-base font-semibold gap-2 bg-primary hover:opacity-90 transition-all shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-hover)]"
+                          className="w-full h-12 text-base font-semibold gap-2 bg-primary hover:opacity-90 transition-all shadow-(--shadow-soft) hover:shadow-[--shadow-hover]"
                         >
                           {isSubmitting ? (
                             <>
@@ -298,7 +298,7 @@ export function ContactForm({
                   >
                     <Badge
                       variant="secondary"
-                      className="w-fit px-4 py-2 text-sm font-medium bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-400 border-green-500/20"
+                      className="w-fit px-4 py-2 text-sm font-medium bg-linear-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-400 border-green-500/20"
                     >
                       <motion.span
                         animate={{ scale: [1, 1.2, 1] }}
@@ -400,10 +400,10 @@ export function ContactForm({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="p-4 rounded-lg bg-gradient-to-br from-accent/30 to-accent/10 border border-accent-foreground/10"
+                    className="p-4 rounded-lg bg-linear-to-br from-accent/30 to-accent/10 border border-accent-foreground/10"
                   >
                     <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                       <div className="text-xs text-muted-foreground leading-relaxed">
                         <strong className="text-foreground">
                           Privacy first:
