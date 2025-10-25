@@ -13,6 +13,7 @@ import { Tag } from "./Tag";
 import { useMemo, useState } from "react";
 import { ImageModal } from "./ImageModal";
 import { ProjectDetailsModal } from "./ProjectsDetailModal";
+import { TiltCard } from "@/components/TiltCard";
 
 export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
   const [query, setQuery] = useState("");
@@ -97,10 +98,10 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
         />
       </div>
 
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:balance]">
         {filtered.map((p) => (
           <div key={p.title} className="mb-6 break-inside-avoid">
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <TiltCard>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Code2 className="w-5 h-5 text-primary" /> {p.title}
@@ -179,7 +180,7 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
                   <ChevronRight className="w-4 h-4" />
                 </Button>
               </CardFooter>
-            </Card>
+            </TiltCard>
           </div>
         ))}
       </div>

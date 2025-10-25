@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
-import { Sun, Moon, ChevronRight, Rocket, Sparkles } from "lucide-react";
+import { Sun, Moon, Sparkles, ArrowRight } from "lucide-react";
 import { useTranslate } from "@/hooks/useTranslate";
 import { useTheme } from "@/hooks/useTheme";
+import { MorphingText } from "./MorphingText";
+import { MagneticButton } from "./MagneticButton";
 
 /* -------------------------------------------
    Particles Background (HiDPI-aware + pause on hidden tab)
@@ -284,10 +286,12 @@ export default function Hero() {
                 prefersReducedMotion ? undefined : (fadeUp.animate as any)
               }
             >
-              {t.hero.title_html1}
-              <span className="ml-3 inline-block md:text-4xl rounded-2xl bg-linear-to-r from-[--primary] to-pink-400 px-3 py-1 mt-4 text-[--primary-ink]">
-                {t.hero.title_html2}
-              </span>
+              Creating{" "}
+              <MorphingText
+                words={["Beautiful", "Interactive", "Stunning", "Modern"]}
+                className="text-6xl md:text-8xl"
+              />{" "}
+              Experiences
             </motion.h1>
 
             <motion.p
@@ -321,10 +325,10 @@ export default function Hero() {
                   prefersReducedMotion ? undefined : (pop.animate as any)
                 }
                 href="#get-started"
-                className="btn-primary inline-flex items-center gap-2 rounded-2xl bg-[--primary] px-5 py-3 font-semibold text-[--primary-ink] shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--ring] hover:brightness-110"
               >
-                <Rocket className="size-5" />
-                {t.hero.primary_cta}
+                <MagneticButton size="lg" className="gap-2">
+                  {t.hero.primary_cta} <ArrowRight className="w-4 h-4" />
+                </MagneticButton>
               </motion.a>
 
               <motion.a
@@ -347,10 +351,10 @@ export default function Hero() {
                       } as any)
                 }
                 href="#learn-more"
-                className="inline-flex items-center gap-2 rounded-2xl border border-transparent bg-[--bg-elev] px-5 py-3 font-medium text-[--fg] shadow-sm transition hover:border-[--ring] hover:shadow-md"
               >
-                {t.hero.secondary_cta}
-                <ChevronRight className="size-4" />
+                <MagneticButton variant="outline" size="lg">
+                  {t.hero.secondary_cta}
+                </MagneticButton>
               </motion.a>
             </div>
 
@@ -363,7 +367,7 @@ export default function Hero() {
                 >
                   <div className="text-2xl font-extrabold tracking-tight">
                     {s.v}
-                    {s.k} {/* было: {s.v}{s.k} — оставляем логику */}
+                    {s.k}
                   </div>
                   <div className="mt-1 text-xs text-[--muted]">{s.label}</div>
                 </motion.div>
