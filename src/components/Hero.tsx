@@ -12,6 +12,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { MorphingText } from "./MorphingText";
 import { MagneticButton } from "./MagneticButton";
 import { InteractiveParticles } from "./InteractiveParticles";
+import { useLang } from "@/hooks/useLang";
 
 /* -------------------------------------------
    Motion variants
@@ -54,6 +55,15 @@ export default function Hero() {
   const { theme, setTheme } = useTheme();
   const switchTheme = () => setTheme(theme === "dark" ? "light" : "dark");
   const t = useTranslate();
+  const { lang } = useLang();
+
+  const morphWords = useMemo(
+    () =>
+      lang === "ru"
+        ? ["Красивые", "Интерактивные", "Впечатляющие", "Современные"]
+        : ["Beautiful", "Interactive", "Stunning", "Modern"],
+    [lang]
+  );
 
   // параллакс
   const ref = useRef<HTMLDivElement>(null);
@@ -214,12 +224,12 @@ export default function Hero() {
               }
               style={sLayer(y1)}
             >
-              Creating{" "}
+              {t.hero.title_html1}{" "}
               <MorphingText
-                words={["Beautiful", "Interactive", "Stunning", "Modern"]}
-                className="text-6xl md:text-8xl"
+                words={morphWords} // ⬅️ локализованные слова
+                className="text-4xl md:text-7xl"
               />{" "}
-              Experiences
+              {t.hero.title_html2}
             </motion.h1>
 
             <motion.p
@@ -256,7 +266,7 @@ export default function Hero() {
                 animate={
                   prefersReducedMotion ? undefined : (pop.animate as any)
                 }
-                href="#get-started"
+                href="#services"
               >
                 <MagneticButton size="lg" className="gap-2">
                   {t.hero.primary_cta} <ArrowRight className="w-4 h-4" />
@@ -282,7 +292,7 @@ export default function Hero() {
                         },
                       } as any)
                 }
-                href="#learn-more"
+                href="#projects"
               >
                 <MagneticButton variant="outline" size="lg">
                   {t.hero.secondary_cta}

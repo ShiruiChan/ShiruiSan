@@ -14,5 +14,5 @@ export const profile = {
   },
   resumeUrl: "/resume.pdf",
   calendly: "https://calendly.com/yourname/intro",
-  responseTime: "lox",
+  responseTime: "9:00 - 18:00 GMT+9",
 };

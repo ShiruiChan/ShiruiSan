@@ -26,6 +26,22 @@ export const i18n = {
         performance: "Drove SSR/ISR migration and reduced TTFB by 30%",
       },
     },
+    stats: {
+      projects: {
+        count: 12,
+        name: "Projects",
+        detailed: "Successfully delivered across web and mobile platforms",
+      },
+      design: {
+        name: "Design Systems",
+        detailed: "Built scalable design systems for enterprise applications",
+      },
+      year: {
+        count: 5,
+        name: "Years",
+        detailed: "Experience in modern frontend development and UI/UX design",
+      },
+    },
     services: {
       service1: {
         name: "Starter Landing Page",
@@ -107,8 +123,8 @@ export const i18n = {
       lang: "Language",
     },
     hero: {
-      title_html1: "Interfaces that respect users —",
-      title_html2: "fast, stable, precise",
+      title_html1: "Creating",
+      title_html2: "Experiences",
       subtitle:
         "Subtle motion, dependable typography, and measured performance",
       primary_cta: "Get started",
@@ -172,6 +188,23 @@ export const i18n = {
         performance: "Провёл миграцию на SSR/ISR и сократил TTFB на 30%",
       },
     },
+    stats: {
+      projects: {
+        count: 12,
+        name: "Проектов",
+        detailed:
+          "Успешно реализовано на веб-платформах и мобильных устройствах",
+      },
+      design: {
+        name: "Дизайн систем",
+        detailed: "Создание систем проектирования для корпоративных приложений",
+      },
+      year: {
+        count: 5,
+        name: "Лет",
+        detailed: "Опыт в современной разработке фронтенда и дизайне UI/UX",
+      },
+    },
     services: {
       service1: {
         name: "Базовый лендинг",
@@ -209,8 +242,8 @@ export const i18n = {
       },
     },
     hero: {
-      title_html1: "Интерфейсы с уважением к пользователю —",
-      title_html2: "быстро, стабильно, точно",
+      title_html1: "Создавать",
+      title_html2: "впечатления",
       subtitle:
         "Тонкие анимации, надёжная типографика и измеримая производительность",
       primary_cta: "Начать",

@@ -6,8 +6,11 @@ import { CardTitle } from "@/components/ui/card";
 import { Palette } from "lucide-react";
 import { Code } from "lucide-react";
 import { Sparkles } from "lucide-react";
+import { useTranslate } from "@/hooks/useTranslate";
 
 export function About() {
+  const t = useTranslate();
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -19,21 +22,18 @@ export function About() {
             <CardHeader>
               <Code className="w-12 h-12 mb-4 text-primary" />
               <CardTitle>
-                <AnimatedCounter end={50} suffix="+" /> Projects
+                <AnimatedCounter end={t.stats.projects.count} suffix="+" />{" "}
+                {t.stats.projects.name}
               </CardTitle>
-              <CardDescription>
-                Successfully delivered across web and mobile platforms
-              </CardDescription>
+              <CardDescription>{t.stats.projects.detailed}</CardDescription>
             </CardHeader>
           </TiltCard>
 
           <TiltCard>
             <CardHeader>
               <Palette className="w-12 h-12 mb-4 text-primary" />
-              <CardTitle>Design Systems</CardTitle>
-              <CardDescription>
-                Built scalable design systems for enterprise applications
-              </CardDescription>
+              <CardTitle>{t.stats.design.name}</CardTitle>
+              <CardDescription>{t.stats.design.detailed}</CardDescription>
             </CardHeader>
           </TiltCard>
 
@@ -41,11 +41,10 @@ export function About() {
             <CardHeader>
               <Sparkles className="w-12 h-12 mb-4 text-primary" />
               <CardTitle>
-                <AnimatedCounter end={5} suffix="+" /> Years
+                <AnimatedCounter end={t.stats.year.count} suffix="+" />{" "}
+                {t.stats.year.name}
               </CardTitle>
-              <CardDescription>
-                Experience in modern frontend development and UI/UX design
-              </CardDescription>
+              <CardDescription>{t.stats.year.detailed}</CardDescription>
             </CardHeader>
           </TiltCard>
         </div>
