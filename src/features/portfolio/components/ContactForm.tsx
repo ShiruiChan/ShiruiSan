@@ -63,6 +63,7 @@ export function ContactForm({
     success: string;
     error: string;
     availability: string;
+    unavailable: string;
     responseTime: string;
     or: string;
   };
@@ -116,6 +117,9 @@ export function ContactForm({
       },
     },
   };
+
+  const hour = new Date().getHours();
+  const isAvailable = hour >= 9 && hour < 18;
 
   return (
     <motion.div
@@ -298,7 +302,11 @@ export function ContactForm({
                   >
                     <Badge
                       variant="secondary"
-                      className="w-fit px-4 py-2 text-sm font-medium bg-linear-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-400 border-green-500/20"
+                      className={`w-fit px-4 py-2 text-sm font-medium bg-linear-to-r${
+                        isAvailable
+                          ? "from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-400 border-green-500/20"
+                          : "from-red-500/10 to-rose-500/10 text-red-700 dark:text-red-400 border-red-500/20"
+                      }`}
                     >
                       <motion.span
                         animate={{ scale: [1, 1.2, 1] }}
@@ -307,9 +315,11 @@ export function ContactForm({
                           repeat: Infinity,
                           ease: "easeInOut",
                         }}
-                        className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"
+                        className={`inline-block w-2 h-2 rounded-full mr-2 ${
+                          isAvailable ? "bg-green-500" : "bg-red-500"
+                        }`}
                       />
-                      {t.availability}
+                      {isAvailable ? t.availability : t.unavailable}
                     </Badge>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Clock className="w-4 h-4 text-primary" />
