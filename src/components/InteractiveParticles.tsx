@@ -39,7 +39,7 @@ export const InteractiveParticles = () => {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 3 + 1,
-        hue: Math.random() * 60 + 200, // Blue-purple range
+        hue: 260,
       });
     }
     setParticles(newParticles);
@@ -80,7 +80,7 @@ export const InteractiveParticles = () => {
           const force = (minDistance - distance) / minDistance;
           particle.vx += (dx / distance) * force * 0.5;
           particle.vy += (dy / distance) * force * 0.5;
-          particle.hue = (particle.hue + 2) % 360;
+          // particle.hue = (particle.hue + 2) % 360;
         } else {
           // Return to original velocity
           particle.vx *= 0.98;
@@ -139,8 +139,7 @@ export const InteractiveParticles = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 0 }}
+      className="absolute inset-0 pointer-events-none opacity-20 will-change-transform"
     />
   );
 };

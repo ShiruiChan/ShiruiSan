@@ -6,6 +6,7 @@ import { useTranslate } from "@/hooks/useTranslate";
 import { useTheme } from "@/hooks/useTheme";
 import { MorphingText } from "./MorphingText";
 import { MagneticButton } from "./MagneticButton";
+import { InteractiveParticles } from "./InteractiveParticles";
 
 /* -------------------------------------------
    Particles Background (HiDPI-aware + pause on hidden tab)
@@ -237,9 +238,10 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         <FloatingOrb className="left-[-10%] top-[-10%] bg-linear-to-br from-[rgba(124,92,255,0.25)] to-[rgba(255,182,193,0.2)]" />
         <FloatingOrb className="right-[-15%] bottom-[-15%] bg-linear-to-tr from-[rgba(61,199,255,0.2)] to-[rgba(139,92,246,0.25)]" />
-        <ParticlesBackground
+        {/* <ParticlesBackground
           color={theme === "dark" ? "139, 92, 246" : "124, 92, 255"}
-        />
+        /> */}
+        <InteractiveParticles />
       </div>
 
       {/* Content container */}

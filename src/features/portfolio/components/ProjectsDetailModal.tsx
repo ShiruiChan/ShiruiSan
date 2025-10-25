@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Code2 } from "lucide-react";
 import type { Project } from "@/shared/data";
+import { TechTag } from "@/components/TechTag";
 
 interface ProjectDetailsModalProps {
   project: Project;
@@ -91,12 +92,12 @@ export function ProjectDetailsModal({
               {lang === "ru" ? "Технологии" : "Technologies"}
             </h3>
             <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {project.tags.map((tag, i) => (
                 <span
                   key={tag}
                   className="px-3 py-1.5 text-sm rounded-md bg-secondary text-secondary-foreground"
                 >
-                  {tag}
+                  <TechTag name={tag} delay={i * 100} />
                 </span>
               ))}
             </div>

@@ -1,3 +1,4 @@
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { TiltCard } from "@/components/TiltCard";
 import { CardDescription } from "@/components/ui/card";
 import { CardHeader } from "@/components/ui/card";
@@ -17,7 +18,9 @@ export function About() {
           <TiltCard>
             <CardHeader>
               <Code className="w-12 h-12 mb-4 text-primary" />
-              <CardTitle>50+ Projects</CardTitle>
+              <CardTitle>
+                <AnimatedCounter end={50} suffix="+" /> Projects
+              </CardTitle>
               <CardDescription>
                 Successfully delivered across web and mobile platforms
               </CardDescription>
@@ -37,7 +40,9 @@ export function About() {
           <TiltCard>
             <CardHeader>
               <Sparkles className="w-12 h-12 mb-4 text-primary" />
-              <CardTitle>5+ Years</CardTitle>
+              <CardTitle>
+                <AnimatedCounter end={5} suffix="+" /> Years
+              </CardTitle>
               <CardDescription>
                 Experience in modern frontend development and UI/UX design
               </CardDescription>

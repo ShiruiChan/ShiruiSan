@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { ImageModal } from "./ImageModal";
 import { ProjectDetailsModal } from "./ProjectsDetailModal";
 import { TiltCard } from "@/components/TiltCard";
+import { TechTag } from "@/components/TechTag";
 
 export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
   const [query, setQuery] = useState("");
@@ -147,12 +148,12 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1.5">
-                  {p.tags.slice(0, 3).map((tag) => (
+                  {p.tags.slice(0, 3).map((tag, i) => (
                     <span
                       key={tag}
                       className="px-2 py-0.5 text-xs rounded-md bg-secondary text-secondary-foreground"
                     >
-                      {tag}
+                      <TechTag name={tag} delay={i * 100} />
                     </span>
                   ))}
                   {p.tags.length > 3 && (
