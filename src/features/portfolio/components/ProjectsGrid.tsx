@@ -8,10 +8,10 @@ import {
 import { Code2, ExternalLink, Filter, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { allTags, projects, type Project } from "@/shared/data";
-import { Tag } from "./Tag";
+import { Tag } from "../../../components/Tag";
 import { useMemo, useState } from "react";
-import { ImageModal } from "./ImageModal";
-import { ProjectDetailsModal } from "./ProjectsDetailModal";
+import { ImageModal } from "./ProjectCard/ImageModal";
+import { ProjectDetailsModal } from "./ProjectCard/ProjectsDetailModal";
 import { TiltCard } from "@/components/TiltCard";
 import { TechTag } from "@/components/TechTag";
 

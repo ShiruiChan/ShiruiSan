@@ -9,9 +9,9 @@ import {
 import { Sun, Moon, Sparkles, ArrowRight } from "lucide-react";
 import { useTranslate } from "@/hooks/useTranslate";
 import { useTheme } from "@/hooks/useTheme";
-import { MorphingText } from "./MorphingText";
-import { MagneticButton } from "./MagneticButton";
-import { InteractiveParticles } from "./InteractiveParticles";
+import { MorphingText } from "../../../components/MorphingText";
+import { MagneticButton } from "../../../components/MagneticButton";
+import { InteractiveParticles } from "../../../components/InteractiveParticles";
 import { useLang } from "@/hooks/useLang";
 
 /* -------------------------------------------

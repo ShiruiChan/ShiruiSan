@@ -1,20 +1,20 @@
 import { i18n } from "@/shared/i18n";
-import { Section } from "./components/Section";
-import { About } from "./components/About";
-import { AboutContent } from "./components/AboutContent";
-import { ProjectsGrid } from "./components/ProjectsGrid";
+import { Section } from "@/components/Section";
+import { About } from "@/features/portfolio/components/About/About";
+import { AboutContent } from "@/features/portfolio/components/About/AboutContent";
+import { ProjectsGrid } from "@/features/portfolio/components/ProjectsGrid";
 // import { ExperienceSection } from "./components/ExperienceSection";
 // import { BlogSection } from "./components/BlogSection";
-import { ContactForm } from "./components/ContactForm";
+import { ContactForm } from "@/features/portfolio/components/ContactForm";
 import { useLang } from "@/hooks/useLang";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "@/features/Header";
+import Footer from "@/features/Footer";
 // import { CredibilityBar } from "./components/CredibilityBar";
-import { ServicesGrid } from "./components/ServicesGrid";
+import { ServicesGrid } from "@/features/portfolio/components/ServicesGrid";
 // import { TESTIMONIALS } from "@/shared/data";
 // import { TestimonialStrip } from "./components/TestimonialStrip";
-import Hero from "@/components/Hero";
+import Hero from "@/features/portfolio/components/Hero";
 
 export default function PortfolioApp() {
   const { lang } = useLang();
