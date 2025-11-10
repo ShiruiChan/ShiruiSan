@@ -7,11 +7,5 @@ export default function LangLayout({
   children: React.ReactNode;
   params: { lang: "ru" | "en" };
 }) {
-  return (
-    <html lang={params.lang}>
-      <body>
-        <Providers lang={params.lang}>{children}</Providers>
-      </body>
-    </html>
-  );
+  return <Providers lang={params.lang}>{children}</Providers>;
 }
