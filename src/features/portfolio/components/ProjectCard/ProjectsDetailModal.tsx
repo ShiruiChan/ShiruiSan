@@ -3,11 +3,11 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+} from "@/src/components/ui/dialog";
+import { Button } from "@/src/components/ui/button";
 import { ExternalLink, Code2 } from "lucide-react";
-import type { Project } from "@/shared/data";
-import { TechTag } from "@/components/TechTag";
+import type { Project } from "@/src/shared/data";
+import { TechTag } from "@/src/components/TechTag";
 
 interface ProjectDetailsModalProps {
   project: Project;

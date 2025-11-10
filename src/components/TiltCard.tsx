@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
-import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Card } from "../components/ui/card";
+import { cn } from "../lib/utils";
 
 interface TiltCardProps {
   children: ReactNode;

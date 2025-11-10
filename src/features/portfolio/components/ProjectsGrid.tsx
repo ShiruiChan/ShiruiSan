@@ -1,19 +1,19 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/src/components/ui/card";
 import { Code2, ExternalLink, Filter, ChevronRight } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { allTags, projects, type Project } from "@/shared/data";
+import { Input } from "@/src/components/ui/input";
+import { allTags, projects, type Project } from "@/src/shared/data";
 import { Tag } from "../../../components/Tag";
 import { useMemo, useState } from "react";
 import { ImageModal } from "./ProjectCard/ImageModal";
 import { ProjectDetailsModal } from "./ProjectCard/ProjectsDetailModal";
-import { TiltCard } from "@/components/TiltCard";
-import { TechTag } from "@/components/TechTag";
+import { TiltCard } from "@/src/components/TiltCard";
+import { TechTag } from "@/src/components/TechTag";
 
 export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
   const [query, setQuery] = useState("");

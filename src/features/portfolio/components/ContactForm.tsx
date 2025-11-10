@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardContent } from "@/src/components/ui/card";
+import { Input } from "@/src/components/ui/input";
+import { Textarea } from "@/src/components/ui/textarea";
 import {
   Github,
   Mail,
@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   MessageSquare,
 } from "lucide-react";
-import { profile } from "@/shared/profile";
+import { profile } from "@/src/shared/profile";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,8 +23,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Badge } from "@/components/ui/badge";
+} from "@/src/components/ui/form";
+import { Badge } from "@/src/components/ui/badge";
 
 const contactSchema = z.object({
   name: z

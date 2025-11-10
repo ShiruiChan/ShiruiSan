@@ -1,4 +1,4 @@
-import { i18n, type Lang } from "@/shared/i18n";
+import { i18n, type Lang } from "./i18n";
 
 export function getNavLabel(id: string, lang: Lang): string {
   const t = i18n[lang]?.nav || {};

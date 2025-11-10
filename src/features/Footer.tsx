@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 // import { Moon, Sun, Globe } from "lucide-react";
-import { useTranslate } from "@/hooks/useTranslate";
+import { useTranslate } from "../hooks/useTranslate";
 
 export default function Footer() {
   const year = new Date().getFullYear();

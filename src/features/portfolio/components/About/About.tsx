@@ -1,12 +1,12 @@
-import { AnimatedCounter } from "@/components/AnimatedCounter";
-import { TiltCard } from "@/components/TiltCard";
-import { CardDescription } from "@/components/ui/card";
-import { CardHeader } from "@/components/ui/card";
-import { CardTitle } from "@/components/ui/card";
+import { AnimatedCounter } from "@/src/components/AnimatedCounter";
+import { TiltCard } from "@/src/components/TiltCard";
+import { CardDescription } from "@/src/components/ui/card";
+import { CardHeader } from "@/src/components/ui/card";
+import { CardTitle } from "@/src/components/ui/card";
 import { Palette } from "lucide-react";
 import { Code } from "lucide-react";
 import { Sparkles } from "lucide-react";
-import { useTranslate } from "@/hooks/useTranslate";
+import { useTranslate } from "@/src/hooks/useTranslate";
 
 export function About() {
   const t = useTranslate();

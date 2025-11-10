@@ -1,9 +1,14 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/src/components/ui/badge";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/src/components/ui/card";
 import { Sparkles } from "lucide-react";
-import { skills, highlights, principles } from "@/shared/data";
-import { useLang } from "@/hooks/useLang";
-import { useTranslate } from "@/hooks/useTranslate";
+import { skills, highlights, principles } from "@/src/shared/data";
+import { useLang } from "@/src/hooks/useLang";
+import { useTranslate } from "@/src/hooks/useTranslate";
 import { motion } from "framer-motion";
 
 export function AboutContent() {

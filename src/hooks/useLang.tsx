@@ -1,24 +1,33 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+"use client";
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
 
-export type Lang = "ru" | "en";
-
+type Lang = "ru" | "en";
 type Ctx = { lang: Lang; setLang: (l: Lang) => void };
-const LangCtx = createContext<Ctx | null>(null);
 
-export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    const saved = localStorage.getItem("lang");
-    return saved === "ru" || saved === "en" ? (saved as Lang) : "ru";
-  });
+const LangCtx = createContext<Ctx | undefined>(undefined);
 
+export function LangProvider({
+  children,
+  initialLang = "ru",
+}: {
+  children: React.ReactNode;
+  initialLang?: Lang;
+}) {
+  const [lang, setLang] = useState<Lang>(initialLang);
+
+  // синхронизация при смене сегмента /[lang]
   useEffect(() => {
-    localStorage.setItem("lang", lang);
-    document.documentElement.lang = lang;
-  }, [lang]);
+    setLang(initialLang);
+  }, [initialLang]);
 
-  return (
-    <LangCtx.Provider value={{ lang, setLang }}>{children}</LangCtx.Provider>
-  );
+  const value = useMemo(() => ({ lang, setLang }), [lang]);
+  return <LangCtx.Provider value={value}>{children}</LangCtx.Provider>;
 }
 
 export function useLang() {

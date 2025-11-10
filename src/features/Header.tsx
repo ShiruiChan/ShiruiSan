@@ -1,10 +1,10 @@
 // src/components/Header.tsx
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_SECTIONS } from "@/shared/data";
-import { useTheme } from "@/hooks/useTheme";
-import { useLang } from "@/hooks/useLang";
-import { getNavLabel } from "@/shared/navLabels";
+import { NAV_SECTIONS } from "../shared/data";
+import { useTheme } from "../hooks/useTheme";
+import { useLang } from "../hooks/useLang";
+import { getNavLabel } from "../shared/navLabels";
 import { Moon, Sun } from "lucide-react";
 
 function useScrollSpy(ids: string[], offset = 120) {

@@ -4,13 +4,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "@/src/components/ui/card";
+import { Badge } from "@/src/components/ui/badge";
+import { Button } from "@/src/components/ui/button";
+import { profile } from "@/src/shared/profile";
+import { useAnalytics } from "@/src/hooks/useAnalytics";
+import { useTranslate } from "@/src/hooks/useTranslate";
 import { CheckCircle2, Sparkles } from "lucide-react";
-import { profile } from "@/shared/profile";
-import { useAnalytics } from "@/hooks/useAnalytics";
-import { useTranslate } from "@/hooks/useTranslate";
 import { motion } from "framer-motion";
 
 export function ServicesGrid() {
