@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "../lib/utils";
 import {
   Tooltip,
@@ -15,6 +15,31 @@ interface TechTagProps {
 
 export const TechTag = ({ name, description, delay = 0 }: TechTagProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const tagRef = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    const el = tagRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [delay]);
 
   return (
     <TooltipProvider>
@@ -32,20 +57,7 @@ export const TechTag = ({ name, description, delay = 0 }: TechTagProps) => {
               transitionDelay: `${delay}ms`,
             }}
             onMouseEnter={() => setIsVisible(true)}
-            ref={(el) => {
-              if (el) {
-                const observer = new IntersectionObserver(
-                  ([entry]) => {
-                    if (entry.isIntersecting) {
-                      setTimeout(() => setIsVisible(true), delay);
-                    }
-                  },
-                  { threshold: 0.5 }
-                );
-                observer.observe(el);
-                return () => observer.disconnect();
-              }
-            }}
+            ref={tagRef}
           >
             {name}
           </span>

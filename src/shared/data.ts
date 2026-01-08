@@ -22,10 +22,31 @@ export const NAV_SECTIONS: NavSection[] = [
   { id: "home", label: "Home" },
   { id: "projects", label: "Projects" },
   { id: "services", label: "Services" },
-  { id: "experience", label: "Experience" },
+  // { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
-  { id: "testimonials", label: "Testimonials" },
+  // { id: "testimonials", label: "Testimonials" },
   { id: "contact", label: "Contact" },
+];
+
+export type ProjectStatus = "completed" | "in-progress";
+export type ProjectCategory =
+  | "sites"
+  | "software"
+  | "bots"
+  | "menu-design"
+  | "web-design"
+  | "logos";
+
+export const PROJECT_CATEGORIES: Array<{
+  id: ProjectCategory;
+  label: { ru: string; en: string };
+}> = [
+  { id: "sites", label: { ru: "Сайты", en: "Websites" } },
+  { id: "software", label: { ru: "ПО", en: "Software" } },
+  { id: "bots", label: { ru: "Боты", en: "Bots" } },
+  { id: "menu-design", label: { ru: "Дизайн меню", en: "Menu Design" } },
+  { id: "web-design", label: { ru: "Дизайны сайтов", en: "Web Design" } },
+  { id: "logos", label: { ru: "Логотипы", en: "Logos" } },
 ];
 
 export type Project = {
@@ -35,6 +56,8 @@ export type Project = {
   link: string;
   image?: string[];
   alt?: string;
+  category: ProjectCategory;
+  status: ProjectStatus;
 };
 
 const baseProjects: Project[] = [
@@ -59,6 +82,8 @@ const baseProjects: Project[] = [
       "/Projects/tours-of-yakutia/tours-of-yakutia-4.webp",
     ],
     alt: "Tours of Yakutia website preview",
+    category: "sites",
+    status: "completed",
   },
   {
     title: "YKT Sokol",
@@ -83,38 +108,42 @@ const baseProjects: Project[] = [
       "/Projects/ykt-sokol/ykt-sokol-6.webp",
     ],
     alt: "YKT Sokol website preview",
+    category: "sites",
+    status: "completed",
   },
-  {
-    title: "Lory",
-    blurb:
-      "Минималистичный продуктовый лендинг с акцентом на motion и читабельность.",
-    tags: [
-      "React",
-      "TypeScript",
-      "Framer Motion",
-      "Tailwind",
-      "Лендинг",
-      "Анимации",
-      "Компонентный дизайн",
-    ],
-    link: "https://lory.vercel.app",
-    alt: "Lory landing page preview",
-    image: [
-      "/Projects/lory.lab/lory-lab-1.webp",
-      "/Projects/lory.lab/lory-lab-2.webp",
-      "/Projects/lory.lab/lory-lab-3.webp",
-      "/Projects/lory.lab/lory-lab-4.webp",
-      "/Projects/lory.lab/lory-lab-5.webp",
-      "/Projects/lory.lab/lory-lab-6.webp",
-      "/Projects/lory.lab/lory-lab-7.webp",
-      "/Projects/lory.lab/lory-lab-8.webp",
-      "/Projects/lory.lab/lory-lab-9.webp",
-      "/Projects/lory.lab/lory-lab-10.webp",
-      "/Projects/lory.lab/lory-lab-11.webp",
-      "/Projects/lory.lab/lory-lab-12.webp",
-      "/Projects/lory.lab/lory-lab-13.webp",
-    ],
-  },
+  // {
+  //   title: "Lory",
+  //   blurb:
+  //     "Минималистичный продуктовый лендинг с акцентом на motion и читабельность.",
+  //   tags: [
+  //     "React",
+  //     "TypeScript",
+  //     "Framer Motion",
+  //     "Tailwind",
+  //     "Лендинг",
+  //     "Анимации",
+  //     "Компонентный дизайн",
+  //   ],
+  //   link: "https://lory.vercel.app",
+  //   alt: "Lory landing page preview",
+  //   image: [
+  //     "/Projects/lory.lab/lory-lab-1.webp",
+  //     "/Projects/lory.lab/lory-lab-2.webp",
+  //     "/Projects/lory.lab/lory-lab-3.webp",
+  //     "/Projects/lory.lab/lory-lab-4.webp",
+  //     "/Projects/lory.lab/lory-lab-5.webp",
+  //     "/Projects/lory.lab/lory-lab-6.webp",
+  //     "/Projects/lory.lab/lory-lab-7.webp",
+  //     "/Projects/lory.lab/lory-lab-8.webp",
+  //     "/Projects/lory.lab/lory-lab-9.webp",
+  //     "/Projects/lory.lab/lory-lab-10.webp",
+  //     "/Projects/lory.lab/lory-lab-11.webp",
+  //     "/Projects/lory.lab/lory-lab-12.webp",
+  //     "/Projects/lory.lab/lory-lab-13.webp",
+  //   ],
+  //   category: "sites",
+  //   status: "completed",
+  // },
   {
     title: "Laser Cutting",
     blurb:
@@ -135,27 +164,31 @@ const baseProjects: Project[] = [
       "/Projects/laser-cutting/laser-cutting-3.webp",
     ],
     alt: "Laser Cutting website preview",
+    category: "sites",
+    status: "completed",
   },
-  {
-    title: "LORY LCT",
-    blurb:
-      "Экспериментальный интерфейс с hex-grid: drag/zoom, анимации и лёгкий state-менеджмент.",
-    tags: [
-      "TypeScript",
-      "Zustand",
-      "SVG / Canvas",
-      "Интерактивность",
-      "60fps",
-      "Модульная архитектура",
-    ],
-    link: "https://lory-lct.vercel.app",
-    image: [
-      "/Projects/lory-lct/lory-lct-1.webp",
-      "/Projects/lory-lct/lory-lct-2.webp",
-      "/Projects/lory-lct/lory-lct-3.webp",
-    ],
-    alt: "LORY LCT interface preview",
-  },
+  // {
+  //   title: "LORY LCT",
+  //   blurb:
+  //     "Экспериментальный интерфейс с hex-grid: drag/zoom, анимации и лёгкий state-менеджмент.",
+  //   tags: [
+  //     "TypeScript",
+  //     "Zustand",
+  //     "SVG / Canvas",
+  //     "Интерактивность",
+  //     "60fps",
+  //     "Модульная архитектура",
+  //   ],
+  //   link: "https://lory-lct.vercel.app",
+  //   image: [
+  //     "/Projects/lory-lct/lory-lct-1.webp",
+  //     "/Projects/lory-lct/lory-lct-2.webp",
+  //     "/Projects/lory-lct/lory-lct-3.webp",
+  //   ],
+  //   alt: "LORY LCT interface preview",
+  //   category: "software",
+  //   status: "completed",
+  // },
 ];
 
 // Export projects for use in components
