@@ -1,37 +1,30 @@
-"use client";
-import React, {
-  createContext,
-  useContext,
-  useMemo,
-  useState,
-  useEffect,
-} from "react";
+type LangContextType = {
+  lang: "ru" | "en";
+  setLang: (l: "ru" | "en") => void;
+};
 
-type Lang = "ru" | "en";
-type Ctx = { lang: Lang; setLang: (l: Lang) => void };
-
-const LangCtx = createContext<Ctx | undefined>(undefined);
+const LangContext = React.createContext<LangContextType | null>(null);
 
 export function LangProvider({
   children,
-  initialLang = "ru",
+  initialLang,
 }: {
   children: React.ReactNode;
-  initialLang?: Lang;
+  initialLang: "ru" | "en";
 }) {
-  const [lang, setLang] = useState<Lang>(initialLang);
+  const [lang, setLang] = React.useState(initialLang);
 
-  // синхронизация при смене сегмента /[lang]
-  useEffect(() => {
-    setLang(initialLang);
-  }, [initialLang]);
-
-  const value = useMemo(() => ({ lang, setLang }), [lang]);
-  return <LangCtx.Provider value={value}>{children}</LangCtx.Provider>;
+  return (
+    <LangContext.Provider value={{ lang, setLang }}>
+      {children}
+    </LangContext.Provider>
+  );
 }
 
 export function useLang() {
-  const ctx = useContext(LangCtx);
-  if (!ctx) throw new Error("useLang must be used within LangProvider");
+  const ctx = React.useContext(LangContext);
+  if (!ctx) {
+    throw new Error("useLang must be used within LangProvider");
+  }
   return ctx;
 }

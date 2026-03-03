@@ -1,4 +1,4 @@
-import Providers from "../(site)/Providers";
+import { Providers } from "../(site)/Providers";
 
 export default function LangLayout({
   children,
