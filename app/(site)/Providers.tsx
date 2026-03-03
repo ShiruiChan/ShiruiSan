@@ -1,6 +1,6 @@
 "use client";
-import { LangProvider } from "@/src/hooks/useLang";
-import { ThemeProvider } from "@/src/hooks/useTheme";
+import { LangProvider } from "@/hooks/useLang";
+import { ThemeProvider } from "@/hooks/useTheme";
 
 export default function Providers({
   children,
