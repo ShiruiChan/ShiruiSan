@@ -1,3 +1,5 @@
+import * as React from "react";
+
 type LangContextType = {
   lang: "ru" | "en";
   setLang: (l: "ru" | "en") => void;
