@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Badge } from "@/src/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import { experience } from "@/src/shared/data";
+import { experience } from "@/shared/data";
 // ы
 export function ExperienceSection() {
   return (

@@ -2,9 +2,9 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-} from "@/src/components/ui/dialog";
+} from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 interface ImageModalProps {
   images: string[];

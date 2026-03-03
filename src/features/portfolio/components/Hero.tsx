@@ -7,12 +7,12 @@ import {
   type Transition,
 } from "framer-motion";
 import { Sun, Moon, Sparkles, ArrowRight } from "lucide-react";
-import { useTranslate } from "@/src/hooks/useTranslate";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTranslate } from "@/hooks/useTranslate";
+import { useTheme } from "@/hooks/useTheme";
 import { MorphingText } from "../../../components/MorphingText";
 import { MagneticButton } from "../../../components/MagneticButton";
 import { InteractiveParticles } from "../../../components/InteractiveParticles";
-import { useLang } from "@/src/hooks/useLang";
+import { useLang } from "@/hooks/useLang";
 
 /* -------------------------------------------
    Motion variants
