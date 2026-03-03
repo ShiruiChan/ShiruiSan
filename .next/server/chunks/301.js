@@ -1,1 +1,0 @@
-"use strict";exports.id=301,exports.ids=[301],exports.modules={9301:(t,e,r)=>{r.r(e),r.d(e,{default:()=>s});let s=(0,r(8570).createProxy)(String.raw`/tmp/diannsad/ShiruiSan/app/(site)/components/PortfolioAppClient.tsx#default`)}};
