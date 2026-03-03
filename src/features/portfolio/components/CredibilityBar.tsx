@@ -1,4 +1,4 @@
-import { LOGO_ITEMS } from "@/shared/data";
+import { LOGO_ITEMS } from "@/src/shared/data";
 export function CredibilityBar() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
