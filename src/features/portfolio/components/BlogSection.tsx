@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { blog } from "@/shared/data";
+} from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import { blog } from "@/src/shared/data";
 
 export function BlogSection() {
   return (
