@@ -1,17 +1,9 @@
+// app/(site)/Providers.tsx
 "use client";
-import { LangProvider } from "@/hooks/useLang";
-import { ThemeProvider } from "@/hooks/useTheme";
 
-export default function Providers({
-  children,
-  lang,
-}: {
-  children: React.ReactNode;
-  lang: "ru" | "en";
-}) {
-  return (
-    <ThemeProvider>
-      <LangProvider initialLang={lang}>{children}</LangProvider>
-    </ThemeProvider>
-  );
+import { LangProvider } from "@/hooks/useLang";
+// + другие провайдеры
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <LangProvider>{children}</LangProvider>;
 }
