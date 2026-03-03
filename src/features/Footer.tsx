@@ -60,7 +60,7 @@ export default function Footer() {
               </a>
               <a
                 className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition"
-                href="https://t.me/ShiruiSan"
+                href="https://t.me/Aaiissnn"
                 target="_blank"
               >
                 {t.resources.telegram}

@@ -379,7 +379,7 @@ export function ContactForm({
                           Telegram
                         </div>
                         <div className="text-sm font-medium group-hover:text-primary transition-colors">
-                          @shiruisan
+                          @Aaiissnn
                         </div>
                       </div>
                     </motion.a>
@@ -399,7 +399,7 @@ export function ContactForm({
                           GitHub
                         </div>
                         <div className="text-sm font-medium group-hover:text-primary transition-colors">
-                          /shiruisan
+                          /Aaiissnn
                         </div>
                       </div>
                     </motion.a>

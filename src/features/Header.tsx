@@ -41,7 +41,7 @@ function useScrollSpy(ids: string[], offset = 120) {
 }
 
 export default function Header({
-  logo = "Ренат Харлампьев",
+  logo = "Айсен Аргунов",
 }: {
   logo?: string | React.ReactNode;
 }) {
