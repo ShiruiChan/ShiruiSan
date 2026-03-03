@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { LangProvider } from "@/hooks/useLang";
+import { ThemeProvider } from "@/hooks/useTheme";
 
 export function Providers({
   children,
@@ -10,5 +11,9 @@ export function Providers({
   children: React.ReactNode;
   lang: "ru" | "en";
 }) {
-  return <LangProvider initialLang={lang}>{children}</LangProvider>;
+  return (
+    <ThemeProvider>
+      <LangProvider initialLang={lang}>{children}</LangProvider>
+    </ThemeProvider>
+  );
 }
