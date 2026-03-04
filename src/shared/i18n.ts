@@ -102,7 +102,7 @@ export const i18n = {
       responseTime: "Typical response time",
       or: "Or reach me directly:",
     },
-    brand: "Ais",
+    brand: "ShiruiSan",
     tagline:
       "Frontend • UI/UX • Performance. I craft clean, fast interfaces with delightful micro-interactions.",
     resources: {
@@ -306,7 +306,7 @@ export const i18n = {
       responseTime: "Обычное время ответа",
       or: "Или свяжитесь напрямую:",
     },
-    brand: "Ais",
+    brand: "ShiruiSan",
     tagline:
       "Frontend • UI/UX • Производительность. Создаю чистые, быстрые интерфейсы с приятными микровзаимодействиями.",
     resources: {
