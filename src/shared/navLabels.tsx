@@ -5,8 +5,11 @@ export function getNavLabel(id: string, lang: Lang): string {
   if (id in t) return (t as any)[id] as string;
 
   const map: Record<string, keyof typeof t> = {
+    home: "home",
     about: "about",
     projects: "projects",
+    services: "services",
+    process: "process",
     experience: "experience",
     // blog: "blog",
     contact: "contact",

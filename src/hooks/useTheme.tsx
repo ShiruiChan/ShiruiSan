@@ -51,6 +51,7 @@ export function ThemeProvider({
     );
 
     root.classList.toggle("dark", theme === "dark");
+    root.dataset.theme = theme;
 
     try {
       if (typeof window !== "undefined")

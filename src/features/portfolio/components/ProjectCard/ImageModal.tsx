@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface ImageModalProps {
   images: string[];
@@ -12,6 +13,7 @@ interface ImageModalProps {
   onClose: () => void;
   onNavigate: (index: number) => void;
   title: string;
+  lang: "ru" | "en";
 }
 
 export function ImageModal({
@@ -20,6 +22,7 @@ export function ImageModal({
   onClose,
   onNavigate,
   title,
+  lang,
 }: ImageModalProps) {
   const hasMultiple = images.length > 1;
 
@@ -43,11 +46,14 @@ export function ImageModal({
           )}
         </DialogHeader>
 
-        <div className="relative bg-muted/30">
-          <img
+        <div className="relative h-[70vh] bg-muted/30">
+          <Image
             src={images[currentIndex]}
             alt={`${title} - image ${currentIndex + 1}`}
-            className="w-full h-auto max-h-[70vh] object-contain"
+            fill
+            sizes="100vw"
+            className="object-contain"
+            priority
           />
 
           {hasMultiple && (
@@ -57,6 +63,9 @@ export function ImageModal({
                 size="icon"
                 className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full"
                 onClick={handlePrevious}
+                aria-label={
+                  lang === "ru" ? "Предыдущее изображение" : "Previous image"
+                }
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -65,6 +74,9 @@ export function ImageModal({
                 size="icon"
                 className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full"
                 onClick={handleNext}
+                aria-label={
+                  lang === "ru" ? "Следующее изображение" : "Next image"
+                }
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
@@ -78,15 +90,22 @@ export function ImageModal({
               <button
                 key={idx}
                 onClick={() => onNavigate(idx)}
+                aria-label={
+                  lang === "ru"
+                    ? `Открыть изображение ${idx + 1}`
+                    : `Open image ${idx + 1}`
+                }
                 className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all ${
                   idx === currentIndex
                     ? "border-primary"
                     : "border-transparent opacity-60 hover:opacity-100"
                 }`}
               >
-                <img
+                <Image
                   src={img}
                   alt={`Thumbnail ${idx + 1}`}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
                 />
               </button>

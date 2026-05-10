@@ -2,12 +2,16 @@
 import { motion } from "framer-motion";
 // import { Moon, Sun, Globe } from "lucide-react";
 import { useTranslate } from "../hooks/useTranslate";
+import { useLang } from "../hooks/useLang";
+import { NAV_SECTIONS } from "../shared/data";
+import { getNavLabel } from "../shared/navLabels";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   // const { theme, setTheme } = useTheme();
   // const { lang, setLang } = useLang();
   const t = useTranslate();
+  const { lang } = useLang();
 
   return (
     <footer className="relative mt-20 bg-linear-to-b from-white/70 to-white/90 backdrop-blur dark:from-[rgba(8,11,18)] dark:to-[rgba(124,92,255,0.25)] transition-color duration-500">
@@ -29,15 +33,15 @@ export default function Footer() {
           <nav className="grid grid-cols-2 gap-4 text-sm">
             <div className="space-y-2">
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Navigate
+                {t.footer.navigate}
               </p>
-              {Object.entries(t.nav).map(([key, label]) => (
+              {NAV_SECTIONS.map((item) => (
                 <a
-                  key={key}
-                  href={`#${key}`}
+                  key={item.id}
+                  href={`#${item.id}`}
                   className="block text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition"
                 >
-                  {label}
+                  {getNavLabel(item.id, lang)}
                 </a>
               ))}
             </div>

@@ -16,7 +16,7 @@ export const AnimatedCounter = ({
   prefix = "",
   className,
 }: AnimatedCounterProps) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
   const [isVisible, setIsVisible] = useState(false);
   const countRef = useRef<HTMLSpanElement>(null);
 
@@ -39,9 +39,14 @@ export const AnimatedCounter = ({
 
   useEffect(() => {
     if (!isVisible) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(end);
+      return;
+    }
 
     let startTime: number;
     let animationFrame: number;
+    setCount(0);
 
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { Card } from "../components/ui/card";
 import { cn } from "../lib/utils";
@@ -12,6 +12,15 @@ export const TiltCard = ({ children, className }: TiltCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = () => setReduceMotion(media.matches);
+    onChange();
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -49,9 +58,11 @@ export const TiltCard = ({ children, className }: TiltCardProps) => {
           className
         )}
         style={{
-          transform: `rotateX(${rotation.x}deg) rotateY(${
-            rotation.y
-          }deg) scale(${isHovering ? 1.02 : 1})`,
+          transform: reduceMotion
+            ? undefined
+            : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale(${
+                isHovering ? 1.02 : 1
+              })`,
           transformStyle: "preserve-3d",
         }}
       >

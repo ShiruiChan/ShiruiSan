@@ -6,6 +6,8 @@ import { useTheme } from "../hooks/useTheme";
 import { useLang } from "../hooks/useLang";
 import { getNavLabel } from "../shared/navLabels";
 import { Moon, Sun } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTranslate } from "@/hooks/useTranslate";
 
 function useScrollSpy(ids: string[], offset = 120) {
   const [active, setActive] = useState<string>(ids[0] || "");
@@ -52,6 +54,8 @@ export default function Header({
 
   const { theme, setTheme } = useTheme(); // ✅ тема (localStorage + класс .dark)
   const { lang, setLang } = useLang(); // ✅ язык (localStorage + <html lang>)
+  const router = useRouter();
+  const t = useTranslate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -65,6 +69,12 @@ export default function Header({
   }, [open]);
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const switchLang = (nextLang: "ru" | "en") => {
+    setLang(nextLang);
+    setOpen(false);
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+    router.replace(`/${nextLang}${hash}`);
+  };
 
   return (
     <>
@@ -132,7 +142,8 @@ export default function Header({
                       ? "bg-slate-900 text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
-                  onClick={() => setLang("ru")}
+                  onClick={() => switchLang("ru")}
+                  aria-pressed={lang === "ru"}
                 >
                   RU
                 </button>
@@ -142,7 +153,8 @@ export default function Header({
                       ? "bg-slate-900 text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
-                  onClick={() => setLang("en")}
+                  onClick={() => switchLang("en")}
+                  aria-pressed={lang === "en"}
                 >
                   EN
                 </button>
@@ -150,12 +162,26 @@ export default function Header({
 
               {/* theme toggle */}
               <button
-                aria-label="Toggle theme"
+                aria-label={
+                  lang === "ru" ? "Переключить тему" : "Toggle theme"
+                }
                 onClick={toggleTheme}
                 className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-slate-300/70 text-slate-700 hover:bg-slate-100"
-                title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+                title={
+                  theme === "dark"
+                    ? lang === "ru"
+                      ? "Светлая тема"
+                      : "Switch to Light"
+                    : lang === "ru"
+                    ? "Тёмная тема"
+                    : "Switch to Dark"
+                }
               >
-                {theme === "dark" ? "🌙" : "☀️"}
+                {theme === "dark" ? (
+                  <Moon className="h-4 w-4" />
+                ) : (
+                  <Sun className="h-4 w-4" />
+                )}
               </button>
 
               <a
@@ -164,7 +190,7 @@ export default function Header({
 								  bg-slate-900 text-white hover:opacity-90
 								  dark:bg-white dark:text-slate-900 dark:hover:opacity-95"
               >
-                Get in touch
+                {t.cta.start}
               </a>
             </div>
           </div>
@@ -172,7 +198,8 @@ export default function Header({
           {/* mobile buger */}
           <button
             className="inline-flex items-center justify-center rounded-xl p-2 md:hidden"
-            aria-label="Toggle menu"
+            aria-label={lang === "ru" ? "Открыть меню" : "Toggle menu"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <div className="relative h-5 w-6">
@@ -230,7 +257,7 @@ export default function Header({
                 {/* controls row */}
                 <div className="mt-1 flex items-center gap-2 px-3">
                   <div
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-xl
+                    className="inline-flex overflow-hidden rounded-xl
 										  border border-slate-300/70 text-slate-700 hover:bg-slate-100
 										  dark:border-white/15 dark:text-slate-200 dark:hover:bg-white/10"
                   >
@@ -240,7 +267,8 @@ export default function Header({
                           ? "bg-slate-900 text-white"
                           : "text-slate-700 hover:bg-slate-100"
                       }`}
-                      onClick={() => setLang("ru")}
+                      onClick={() => switchLang("ru")}
+                      aria-pressed={lang === "ru"}
                     >
                       RU
                     </button>
@@ -250,7 +278,8 @@ export default function Header({
                           ? "bg-slate-900 text-white"
                           : "text-slate-700 hover:bg-slate-100"
                       }`}
-                      onClick={() => setLang("en")}
+                      onClick={() => switchLang("en")}
+                      aria-pressed={lang === "en"}
                     >
                       EN
                     </button>
@@ -261,8 +290,10 @@ export default function Header({
                       setTheme(theme === "light" ? "dark" : "light")
                     } // ← тут переключаем
                     className="rounded-xl border border-slate-300 dark:border-slate-600 p-2 transition hover:bg-slate-100 dark:hover:bg-slate-700/50"
-                    aria-label="Toggle theme"
-                    title="Toggle theme"
+                    aria-label={
+                      lang === "ru" ? "Переключить тему" : "Toggle theme"
+                    }
+                    title={lang === "ru" ? "Переключить тему" : "Toggle theme"}
                   >
                     {theme === "light" ? (
                       <Moon className="h-4 w-4 text-slate-700" />
@@ -277,7 +308,7 @@ export default function Header({
                   onClick={() => setOpen(false)}
                   className="mt-2 rounded-xl bg-slate-900 px-4 py-2 text-base font-semibold text-white hover:opacity-90"
                 >
-                  Get in touch
+                  {t.cta.start}
                 </a>
               </div>
             </motion.div>

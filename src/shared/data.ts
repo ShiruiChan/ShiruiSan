@@ -22,6 +22,7 @@ export const NAV_SECTIONS: NavSection[] = [
   { id: "home", label: "Home" },
   { id: "projects", label: "Projects" },
   { id: "services", label: "Services" },
+  { id: "process", label: "Process" },
   // { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
   // { id: "testimonials", label: "Testimonials" },
@@ -37,6 +38,31 @@ export type ProjectCategory =
   | "web-design"
   | "logos";
 
+export type LocalizedText = {
+  ru: string;
+  en: string;
+};
+
+export type CaseMetricItem = {
+  value: string;
+  label: LocalizedText;
+};
+
+export type ProjectCase = {
+  role: LocalizedText;
+  duration: LocalizedText;
+  clientType: LocalizedText;
+  problem: LocalizedText;
+  research: LocalizedText;
+  solution: LocalizedText;
+  result: LocalizedText;
+  metrics: CaseMetricItem[];
+  testimonial?: {
+    quote: LocalizedText;
+    author: string;
+  };
+};
+
 export const PROJECT_CATEGORIES: Array<{
   id: ProjectCategory;
   label: { ru: string; en: string };
@@ -51,19 +77,24 @@ export const PROJECT_CATEGORIES: Array<{
 
 export type Project = {
   title: string;
-  blurb: string;
+  blurb: LocalizedText;
   tags: string[];
   link: string;
   image?: string[];
   alt?: string;
   category: ProjectCategory;
   status: ProjectStatus;
+  featured?: boolean;
+  caseStudy: ProjectCase;
 };
 
 const baseProjects: Project[] = [
   {
     title: "Tours of Yakutia",
-    blurb: "Первый заказ, низкая скорость рендеринга. Сайт для туров по Якутии",
+    blurb: {
+      ru: "Сайт для туров по Якутии с понятной подачей маршрутов, галереей и быстрым путем к заявке.",
+      en: "A Yakutia travel website with clear route presentation, gallery content and a fast path to inquiry.",
+    },
     tags: [
       "React",
       "Vite",
@@ -84,11 +115,58 @@ const baseProjects: Project[] = [
     alt: "Tours of Yakutia website preview",
     category: "sites",
     status: "completed",
+    featured: true,
+    caseStudy: {
+      role: {
+        ru: "Дизайн интерфейса, фронтенд, адаптив, SEO-основа",
+        en: "Interface design, frontend, responsive UI, SEO basics",
+      },
+      duration: {
+        ru: "Первый коммерческий запуск",
+        en: "First commercial launch",
+      },
+      clientType: {
+        ru: "Туристический сервис",
+        en: "Travel service",
+      },
+      problem: {
+        ru: "Посетителю нужно быстро понять направления, атмосферу туров и способ связаться без лишнего поиска.",
+        en: "Visitors needed to quickly understand destinations, tour atmosphere and the contact path without searching around.",
+      },
+      research: {
+        ru: "Разобрал сценарий выбора тура: первое впечатление, доверие через фотографии, затем переход к заявке.",
+        en: "Mapped the tour-selection flow: first impression, trust through imagery, then a clear inquiry action.",
+      },
+      solution: {
+        ru: "Собрал адаптивную структуру с визуальными блоками маршрутов, понятными CTA и локализованным контентом.",
+        en: "Built a responsive structure with visual route blocks, clear CTAs and localized content.",
+      },
+      result: {
+        ru: "Сайт получил аккуратную презентацию туров, SEO-основу и понятный путь для будущих заявок.",
+        en: "The site gained a cleaner tour presentation, SEO-ready structure and a clearer inquiry path.",
+      },
+      metrics: [
+        {
+          value: "4",
+          label: { ru: "экрана проекта", en: "project screens" },
+        },
+        {
+          value: "i18n",
+          label: { ru: "локализованная структура", en: "localized structure" },
+        },
+        {
+          value: "SEO",
+          label: { ru: "основа индексации", en: "indexing baseline" },
+        },
+      ],
+    },
   },
   {
     title: "YKT Sokol",
-    blurb:
-      "Лёгкий посадочный сайт на Vercel с современным интерфейсом и адаптивной сеткой.",
+    blurb: {
+      ru: "Лёгкий посадочный сайт на Vercel с современным интерфейсом и адаптивной сеткой.",
+      en: "A lightweight Vercel landing page with a modern interface and responsive grid.",
+    },
     tags: [
       "React",
       "Vite",
@@ -110,11 +188,57 @@ const baseProjects: Project[] = [
     alt: "YKT Sokol website preview",
     category: "sites",
     status: "completed",
+    caseStudy: {
+      role: {
+        ru: "Фронтенд, адаптивная сетка, публикация",
+        en: "Frontend, responsive grid, deployment",
+      },
+      duration: {
+        ru: "Короткий лендинг-спринт",
+        en: "Short landing sprint",
+      },
+      clientType: {
+        ru: "Локальный проект",
+        en: "Local project",
+      },
+      problem: {
+        ru: "Нужно было быстро упаковать проект в понятный сайт без тяжелой инфраструктуры.",
+        en: "The project needed a clear web presence without heavy infrastructure.",
+      },
+      research: {
+        ru: "Выделил основные блоки доверия и сценарий быстрого просмотра на мобильных устройствах.",
+        en: "Identified the trust blocks and the fast mobile browsing path.",
+      },
+      solution: {
+        ru: "Собрал посадочную страницу на Vercel с чистой типографикой и сеткой, которая не ломается на мобильных.",
+        en: "Built a Vercel landing page with clean typography and a grid that holds on mobile.",
+      },
+      result: {
+        ru: "Проект получил легкую онлайн-презентацию, которую можно быстро развивать дальше.",
+        en: "The project got a lightweight online presentation that can be extended quickly.",
+      },
+      metrics: [
+        {
+          value: "6",
+          label: { ru: "адаптивных экранов", en: "responsive previews" },
+        },
+        {
+          value: "Vercel",
+          label: { ru: "быстрая публикация", en: "fast deployment" },
+        },
+        {
+          value: "SPA",
+          label: { ru: "простая поддержка", en: "simple maintenance" },
+        },
+      ],
+    },
   },
   {
     title: "Lory",
-    blurb:
-      "Минималистичный продуктовый лендинг с акцентом на motion и читабельность.",
+    blurb: {
+      ru: "Минималистичный продуктовый лендинг с акцентом на motion, читабельность и компонентную структуру.",
+      en: "A minimal product landing page focused on motion, readability and component structure.",
+    },
     tags: [
       "React",
       "TypeScript",
@@ -143,11 +267,58 @@ const baseProjects: Project[] = [
     ],
     category: "sites",
     status: "completed",
+    featured: true,
+    caseStudy: {
+      role: {
+        ru: "UI, motion, React-компоненты",
+        en: "UI, motion, React components",
+      },
+      duration: {
+        ru: "Продуктовый эксперимент",
+        en: "Product experiment",
+      },
+      clientType: {
+        ru: "Собственная лаборатория",
+        en: "Internal lab",
+      },
+      problem: {
+        ru: "Нужно было показать продуктовую подачу без перегруза: минимум текста, сильная типографика, плавный rhythm.",
+        en: "The goal was a product presentation without overload: concise copy, strong typography and smooth rhythm.",
+      },
+      research: {
+        ru: "Сравнил лендинги с motion-подачей и выделил, где анимация помогает чтению, а где отвлекает.",
+        en: "Compared motion-led landing pages and separated helpful motion from distracting decoration.",
+      },
+      solution: {
+        ru: "Собрал компонентный лендинг с мягкими переходами, короткими блоками и стабильной визуальной иерархией.",
+        en: "Built a component-based landing page with soft transitions, short sections and stable hierarchy.",
+      },
+      result: {
+        ru: "Получился аккуратный шаблон продуктовой презентации, который можно масштабировать под разные офферы.",
+        en: "The result is a clean product presentation template that can scale to different offers.",
+      },
+      metrics: [
+        {
+          value: "13",
+          label: { ru: "экранов галереи", en: "gallery screens" },
+        },
+        {
+          value: "Motion",
+          label: { ru: "единая система", en: "consistent system" },
+        },
+        {
+          value: "React",
+          label: { ru: "компонентная сборка", en: "component build" },
+        },
+      ],
+    },
   },
   {
     title: "Laser Cutting",
-    blurb:
-      "Конверсионный лендинг услуги лазерной резки: быстрые CTA, формы и локальное SEO.",
+    blurb: {
+      ru: "Конверсионный лендинг услуги лазерной резки: быстрые CTA, формы и локальное SEO.",
+      en: "A conversion-focused laser cutting landing page with fast CTAs, forms and local SEO basics.",
+    },
     tags: [
       "React",
       "Tailwind",
@@ -166,11 +337,58 @@ const baseProjects: Project[] = [
     alt: "Laser Cutting website preview",
     category: "sites",
     status: "completed",
+    featured: true,
+    caseStudy: {
+      role: {
+        ru: "UX-структура, UI, фронтенд, CTA",
+        en: "UX structure, UI, frontend, CTAs",
+      },
+      duration: {
+        ru: "Коммерческий лендинг",
+        en: "Commercial landing page",
+      },
+      clientType: {
+        ru: "Услуга производства",
+        en: "Manufacturing service",
+      },
+      problem: {
+        ru: "Пользователю нужно быстро понять услугу, увидеть примеры и оставить запрос на расчет.",
+        en: "Users needed to quickly understand the service, inspect examples and request a quote.",
+      },
+      research: {
+        ru: "Разложил путь заявки: тип услуги, доверие, примеры, быстрый контакт и локальная поисковая видимость.",
+        en: "Mapped the quote path: service type, trust, examples, quick contact and local search visibility.",
+      },
+      solution: {
+        ru: "Сделал лендинг с повторяющимися CTA, формой заявки, понятной сеткой преимуществ и SEO-структурой.",
+        en: "Created a landing page with repeated CTAs, request form, clear benefit grid and SEO-ready structure.",
+      },
+      result: {
+        ru: "Страница стала понятной точкой входа для заявок и будущей локальной рекламы.",
+        en: "The page became a clear entry point for inquiries and future local ads.",
+      },
+      metrics: [
+        {
+          value: "3",
+          label: { ru: "приоритетных CTA", en: "priority CTAs" },
+        },
+        {
+          value: "Local",
+          label: { ru: "SEO-основа", en: "SEO baseline" },
+        },
+        {
+          value: "Form",
+          label: { ru: "путь к расчету", en: "quote path" },
+        },
+      ],
+    },
   },
   {
     title: "LORY LCT",
-    blurb:
-      "Экспериментальный интерфейс с hex-grid: drag/zoom, анимации и лёгкий state-менеджмент.",
+    blurb: {
+      ru: "Экспериментальный интерфейс с hex-grid: drag/zoom, анимации и лёгкий state-менеджмент.",
+      en: "An experimental hex-grid interface with drag/zoom, animation and lightweight state management.",
+    },
     tags: [
       "TypeScript",
       "Zustand",
@@ -188,6 +406,50 @@ const baseProjects: Project[] = [
     alt: "LORY LCT interface preview",
     category: "software",
     status: "completed",
+    caseStudy: {
+      role: {
+        ru: "Интерактивный прототип, архитектура состояния",
+        en: "Interactive prototype, state architecture",
+      },
+      duration: {
+        ru: "Технический прототип",
+        en: "Technical prototype",
+      },
+      clientType: {
+        ru: "Интерфейсный эксперимент",
+        en: "Interface experiment",
+      },
+      problem: {
+        ru: "Нужно было проверить удобство drag/zoom взаимодействия на нестандартной hex-сетке.",
+        en: "The goal was to test drag/zoom interaction on a non-standard hex grid.",
+      },
+      research: {
+        ru: "Изучил поведение карты, масштабирование, плотность элементов и границы управления мышью.",
+        en: "Explored map behavior, zooming, element density and mouse-control boundaries.",
+      },
+      solution: {
+        ru: "Собрал прототип с модульным state-менеджментом, SVG/Canvas-слоем и отзывчивыми интеракциями.",
+        en: "Built a prototype with modular state management, SVG/Canvas layer and responsive interactions.",
+      },
+      result: {
+        ru: "Прототип показывает, как можно развивать более сложный инструмент без хаоса в состоянии.",
+        en: "The prototype shows how a more complex tool can grow without chaotic state handling.",
+      },
+      metrics: [
+        {
+          value: "Hex",
+          label: { ru: "нестандартная сетка", en: "custom grid" },
+        },
+        {
+          value: "Drag",
+          label: { ru: "жестовое управление", en: "gesture control" },
+        },
+        {
+          value: "Zustand",
+          label: { ru: "state-слой", en: "state layer" },
+        },
+      ],
+    },
   },
 ];
 

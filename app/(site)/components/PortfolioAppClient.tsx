@@ -1,6 +1,8 @@
 "use client";
+
 import React from "react";
-import PortfolioApp from "@/pages/PortfolioApp";
+import PortfolioApp from "@/features/portfolio/PortfolioApp";
+
 export default function PortfolioAppClient() {
   return <PortfolioApp />;
 }

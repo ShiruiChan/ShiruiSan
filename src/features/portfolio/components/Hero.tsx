@@ -30,25 +30,6 @@ const pop: Variants = {
 };
 
 /* -------------------------------------------
-   Decorative orb
-------------------------------------------- */
-const FloatingOrb: React.FC<{
-  className?: string;
-  style?: React.CSSProperties | any;
-}> = ({ className, style }) => (
-  <motion.div
-    aria-hidden
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 0.75, y: 0 }}
-    transition={{ duration: 1.2, delay: 0.2 }}
-    style={style}
-    className={`pointer-events-none absolute aspect-square w-xl rounded-full blur-3xl ${
-      className ?? ""
-    }`}
-  />
-);
-
-/* -------------------------------------------
    HERO with Parallax
 ------------------------------------------- */
 export default function Hero() {
@@ -56,12 +37,13 @@ export default function Hero() {
   const switchTheme = () => setTheme(theme === "dark" ? "light" : "dark");
   const t = useTranslate();
   const { lang } = useLang();
+  const isDark = theme === "dark";
 
   const morphWords = useMemo(
     () =>
       lang === "ru"
-        ? ["Красивые", "Интерактивные", "Впечатляющие", "Современные"]
-        : ["Beautiful", "Interactive", "Stunning", "Modern"],
+        ? ["быстрые", "понятные", "адаптивные", "конверсионные"]
+        : ["fast", "clear", "responsive", "client-ready"],
     [lang]
   );
 
@@ -114,15 +96,16 @@ export default function Hero() {
       {/* Global theme CSS variables */}
       <style>{`
         :root[data-theme='light'] {
-          --bg: #f6f3ea;
+          --bg: #faf8f2;
           --bg-elev: #ffffff;
-          --fg: #2a2520;
-          --muted: #6b625b;
-          --primary: #7c5cff;
+          --fg: #20252b;
+          --muted: #66707a;
+          --primary: #3f63d8;
           --primary-ink: #ffffff;
-          --ring: rgba(124, 92, 255, 0.35);
-          --shadow: 0 10px 30px rgba(20,16,12,0.08);
-          --card-glass: rgba(255,255,255,0.6);
+          --ring: rgba(63, 99, 216, 0.16);
+          --shadow: 0 18px 55px rgba(42, 48, 60, 0.10);
+          --card-glass: rgba(255,255,255,0.78);
+          --glass-border: rgba(42,48,60,0.08);
         }
         :root[data-theme='dark'] {
           --bg: #0c0b10;
@@ -134,37 +117,50 @@ export default function Hero() {
           --ring: rgba(139, 92, 246, 0.35);
           --shadow: 0 12px 40px rgba(0,0,0,0.35);
           --card-glass: rgba(19,18,26,0.55);
+          --glass-border: rgba(255,255,255,0.08);
         }
         .btn-primary { box-shadow: var(--shadow); }
         .glass {
           background: var(--card-glass);
+          border: 1px solid var(--glass-border);
           backdrop-filter: saturate(140%) blur(12px);
           -webkit-backdrop-filter: saturate(140%) blur(12px);
         }
-        .ringed { box-shadow: 0 0 0 6px var(--ring); } /* fixed */
+        .ringed { box-shadow: 0 0 0 1px var(--ring), var(--shadow); }
       `}</style>
 
-      {/* Background layer: gradient orbs + particles */}
+      {/* Background layer */}
       <div className="absolute inset-0">
-        {/* орбы двигаются медленнее всех */}
-        <FloatingOrb
-          className="left-[-10%] top-[-10%] bg-linear-to-br from-[rgba(124,92,255,0.25)] to-[rgba(255,182,193,0.2)]"
-          // style={sLayer(y3)}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[linear-gradient(135deg,rgba(63,99,216,0.055),transparent_34%,rgba(43,171,143,0.07))] dark:bg-[linear-gradient(135deg,rgba(124,92,255,0.10),transparent_35%,rgba(61,199,255,0.10))]"
         />
-        <FloatingOrb
-          className="right-[-15%] bottom-[-15%] bg-linear-to-tr from-[rgba(61,199,255,0.2)] to-[rgba(139,92,246,0.25)]"
-          // style={sLayer(y3)}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.35),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),transparent_55%)]"
         />
-        {/* particles можно тоже слегка подвязать */}
-        <motion.div
-          // style={sLayer(y3)}
-          className="absolute inset-0 overflow-hidden"
-        >
-          <InteractiveParticles />
-        </motion.div>
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.16] dark:hidden"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(32,37,43,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(32,37,43,0.08) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+          }}
+        />
+        {isDark && (
+          <motion.div
+            // style={sLayer(y3)}
+            className="absolute inset-0 overflow-hidden"
+          >
+            <InteractiveParticles className="opacity-20" />
+          </motion.div>
+        )}
 
         {/* мягкое выцветание фона при скролле */}
-        {!prefersReducedMotion && (
+        {!prefersReducedMotion && isDark && (
           <motion.div
             className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.12),transparent_60%)]"
             // style={{ opacity }}
@@ -190,14 +186,14 @@ export default function Hero() {
               <Sparkles className="size-5 text-[--fg]" />
             </div>
             <span className="text-sm font-medium tracking-wide text-[--muted]">
-              {t.brand} · Lory.Lab
+              {t.brand} · UI/UX & Frontend
             </span>
           </div>
 
           <button
             onClick={switchTheme}
             className="group flex items-center gap-2 rounded-2xl border border-transparent bg-[--bg-elev] px-3 py-2 text-sm shadow-sm transition hover:border-[--ring] hover:shadow-md"
-            aria-label="Toggle theme"
+            aria-label={t.hero.a11y.toggle_theme}
           >
             {theme === "dark" ? (
               <Sun className="size-4" />
@@ -205,7 +201,13 @@ export default function Hero() {
               <Moon className="size-4" />
             )}
             <span className="text-[--muted]">
-              {theme === "dark" ? "Cozy Light" : "Rich Dark"}
+              {theme === "dark"
+                ? lang === "ru"
+                  ? "Светлая"
+                  : "Light"
+                : lang === "ru"
+                ? "Тёмная"
+                : "Dark"}
             </span>
           </button>
         </motion.div>
@@ -216,9 +218,7 @@ export default function Hero() {
           <div>
             <motion.h1
               className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl"
-              initial={
-                prefersReducedMotion ? undefined : (fadeUp.initial as any)
-              }
+              initial={false}
               animate={
                 prefersReducedMotion ? undefined : (fadeUp.animate as any)
               }
@@ -234,9 +234,7 @@ export default function Hero() {
 
             <motion.p
               className="mt-5 max-w-prose text-lg text-[--muted] md:text-xl"
-              initial={
-                prefersReducedMotion ? undefined : (fadeUp.initial as any)
-              }
+              initial={false}
               animate={
                 prefersReducedMotion
                   ? undefined
@@ -260,9 +258,7 @@ export default function Hero() {
               // style={sLayer(y2)}
             >
               <motion.a
-                initial={
-                  prefersReducedMotion ? undefined : (pop.initial as any)
-                }
+                initial={false}
                 animate={
                   prefersReducedMotion ? undefined : (pop.animate as any)
                 }
@@ -274,11 +270,7 @@ export default function Hero() {
               </motion.a>
 
               <motion.a
-                initial={
-                  prefersReducedMotion
-                    ? undefined
-                    : ({ ...(pop.initial as any), rotateX: -10 } as any)
-                }
+                initial={false}
                 animate={
                   prefersReducedMotion
                     ? undefined
@@ -327,11 +319,7 @@ export default function Hero() {
           {/* Right card / preview */}
           <motion.div
             className="relative"
-            initial={
-              prefersReducedMotion
-                ? undefined
-                : { opacity: 0, x: 30, rotate: -1 }
-            }
+            initial={false}
             animate={
               prefersReducedMotion
                 ? undefined
@@ -340,15 +328,6 @@ export default function Hero() {
             // style={sLayer(y2)}
           >
             <div className="glass ringed relative rounded-3xl p-6 shadow-2xl">
-              <motion.div
-                className="pointer-events-none absolute -left-8 -top-8 h-24 w-24 rounded-full bg-linear-to-br from-[rgba(124,92,255,0.4)] to-[rgba(255,182,193,0.25)] blur-2xl"
-                // style={sLayer(y3)}
-              />
-              <motion.div
-                className="pointer-events-none absolute -bottom-10 -right-6 h-28 w-28 rounded-full bg-linear-to-br from-[rgba(61,199,255,0.35)] to-[rgba(139,92,246,0.25)] blur-2xl"
-                // style={sLayer(y3)}
-              />
-
               <div className="relative z-10 flex items-start justify-between gap-4">
                 <div>
                   <div className="text-sm font-semibold text-[--muted]">
@@ -370,9 +349,7 @@ export default function Hero() {
                 {t.hero.preview.bullets.map((bullet, i) => (
                   <motion.div
                     key={bullet}
-                    initial={
-                      prefersReducedMotion ? undefined : { opacity: 0, x: -10 }
-                    }
+                    initial={false}
                     animate={
                       prefersReducedMotion
                         ? undefined

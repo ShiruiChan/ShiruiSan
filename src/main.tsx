@@ -9,7 +9,7 @@ import { Theme } from "@radix-ui/themes";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Theme>
-      <LangProvider>
+      <LangProvider initialLang="ru">
         <SeoHead />
         <App />
       </LangProvider>

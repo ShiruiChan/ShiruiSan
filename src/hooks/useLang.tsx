@@ -16,6 +16,18 @@ export function LangProvider({
 }) {
   const [lang, setLang] = React.useState(initialLang);
 
+  React.useEffect(() => {
+    setLang(initialLang);
+  }, [initialLang]);
+
+  React.useEffect(() => {
+    document.documentElement.lang = lang;
+
+    try {
+      window.localStorage.setItem("lang", lang);
+    } catch {}
+  }, [lang]);
+
   return (
     <LangContext.Provider value={{ lang, setLang }}>
       {children}

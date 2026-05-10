@@ -15,12 +15,13 @@ import {
   type ProjectCategory,
 } from "@/shared/data";
 import { Tag } from "../../../components/Tag";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ImageModal } from "./ProjectCard/ImageModal";
 import { ProjectDetailsModal } from "./ProjectCard/ProjectsDetailModal";
 import { TiltCard } from "@/components/TiltCard";
 import { TechTag } from "@/components/TechTag";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
   const [query, setQuery] = useState("");
@@ -39,18 +40,30 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
     return lang === "ru" ? match.label.ru : match.label.en;
   };
 
+  const text = useCallback(
+    (value: { ru: string; en: string }) => value[lang],
+    [lang]
+  );
+
   const filtered = useMemo(() => {
     return projects.filter((p) => {
-      const matchesQuery = (p.title + p.blurb + p.tags.join(" "))
-        .toLowerCase()
-        .includes(query.toLowerCase());
+      const haystack = [
+        p.title,
+        text(p.blurb),
+        text(p.caseStudy.problem),
+        text(p.caseStudy.solution),
+        p.tags.join(" "),
+      ]
+        .join(" ")
+        .toLowerCase();
+      const matchesQuery = haystack.includes(query.toLowerCase());
       const matchesTag = activeTag ? p.tags.includes(activeTag) : true;
       const matchesCategory = activeCategory
         ? p.category === activeCategory
         : true;
       return matchesQuery && matchesTag && matchesCategory;
     });
-  }, [query, activeTag, activeCategory]);
+  }, [query, activeTag, activeCategory, text]);
 
   const grouped = useMemo(() => {
     return {
@@ -78,6 +91,7 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
             setImageModalData({ ...imageModalData, imageIndex: index })
           }
           title={imageModalData.project.title}
+          lang={lang}
         />
       )}
 
@@ -162,49 +176,73 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <Code2 className="w-5 h-5 text-primary" /> {p.title}
                   </CardTitle>
-                  <Badge variant="secondary">
-                    {lang === "ru" ? "Выполнено" : "Completed"}
-                  </Badge>
+                  <div className="flex shrink-0 flex-col items-end gap-2">
+                    {p.featured && (
+                      <Badge>
+                        {lang === "ru" ? "Кейс" : "Case"}
+                      </Badge>
+                    )}
+                    <Badge variant="secondary">
+                      {lang === "ru" ? "Выполнено" : "Completed"}
+                    </Badge>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="outline">{categoryLabel(p.category)}</Badge>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-3">{p.blurb}</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {text(p.blurb)}
+                </p>
 
                 {/* Main image */}
                 {p.image?.[0] && (
-                  <div
+                  <button
+                    type="button"
                     className="relative mb-3 aspect-video w-full overflow-hidden rounded-lg cursor-pointer group"
                     onClick={() => handleImageClick(p, 0)}
+                    aria-label={
+                      lang === "ru"
+                        ? `Открыть изображение проекта ${p.title}`
+                        : `Open ${p.title} project image`
+                    }
                   >
-                    <img
+                    <Image
                       src={p.image[0]}
                       alt={p.alt || `${p.title} preview`}
-                      loading="lazy"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  </div>
+                  </button>
                 )}
 
                 {/* Mini grid below main image */}
                 {p.image && p.image.length > 1 && (
                   <div className="grid grid-cols-3 gap-2 mb-3">
                     {p.image.slice(1, 4).map((img, i) => (
-                      <div
+                      <button
                         key={i}
+                        type="button"
                         className="relative h-20 w-full overflow-hidden rounded-md cursor-pointer group"
                         onClick={() => handleImageClick(p, i + 1)}
+                        aria-label={
+                          lang === "ru"
+                            ? `Открыть изображение ${i + 2} проекта ${p.title}`
+                            : `Open ${p.title} project image ${i + 2}`
+                        }
                       >
-                        <img
+                        <Image
                           src={img}
                           alt={`${p.title} preview ${i + 1}`}
+                          fill
+                          sizes="(min-width: 1024px) 11vw, (min-width: 640px) 16vw, 33vw"
                           className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -277,39 +315,54 @@ export function ProjectsGrid({ lang }: { lang: "ru" | "en" }) {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground mb-3">
-                      {p.blurb}
+                      {text(p.blurb)}
                     </p>
 
                     {p.image?.[0] && (
-                      <div
+                      <button
+                        type="button"
                         className="relative mb-3 aspect-video w-full overflow-hidden rounded-lg cursor-pointer group"
                         onClick={() => handleImageClick(p, 0)}
+                        aria-label={
+                          lang === "ru"
+                            ? `Открыть изображение проекта ${p.title}`
+                            : `Open ${p.title} project image`
+                        }
                       >
-                        <img
+                        <Image
                           src={p.image[0]}
                           alt={p.alt || `${p.title} preview`}
-                          loading="lazy"
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                           className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                      </div>
+                      </button>
                     )}
 
                     {p.image && p.image.length > 1 && (
                       <div className="grid grid-cols-3 gap-2 mb-3">
                         {p.image.slice(1, 4).map((img, i) => (
-                          <div
+                          <button
                             key={i}
+                            type="button"
                             className="relative h-20 w-full overflow-hidden rounded-md cursor-pointer group"
                             onClick={() => handleImageClick(p, i + 1)}
+                            aria-label={
+                              lang === "ru"
+                                ? `Открыть изображение ${i + 2} проекта ${p.title}`
+                                : `Open ${p.title} project image ${i + 2}`
+                            }
                           >
-                            <img
+                            <Image
                               src={img}
                               alt={`${p.title} preview ${i + 1}`}
+                              fill
+                              sizes="(min-width: 1024px) 11vw, (min-width: 640px) 16vw, 33vw"
                               className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                          </div>
+                          </button>
                         ))}
                       </div>
                     )}

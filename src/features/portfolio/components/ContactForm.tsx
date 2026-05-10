@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Form,
   FormControl,
@@ -26,25 +26,11 @@ import {
 } from "@/components/ui/form";
 import { Badge } from "@/components/ui/badge";
 
-const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, { message: "Name must be at least 2 characters" })
-    .max(100, { message: "Name must be less than 100 characters" }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email" })
-    .max(255, { message: "Email must be less than 255 characters" }),
-  message: z
-    .string()
-    .trim()
-    .min(10, { message: "Message must be at least 10 characters" })
-    .max(1000, { message: "Message must be less than 1000 characters" }),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export function ContactForm({
   t,
@@ -66,10 +52,49 @@ export function ContactForm({
     unavailable: string;
     responseTime: string;
     or: string;
+    validation?: {
+      name: string;
+      email: string;
+      message: string;
+    };
+    privacy?: string;
+    notConfigured?: string;
   };
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [submitState, setSubmitState] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const contactSchema = useMemo(
+    () =>
+      z.object({
+        name: z
+          .string()
+          .trim()
+          .min(2, { message: t.validation?.name ?? "Enter your name" })
+          .max(100, { message: t.validation?.name ?? "Enter your name" }),
+        email: z
+          .string()
+          .trim()
+          .email({ message: t.validation?.email ?? "Enter a valid email" })
+          .max(255, {
+            message: t.validation?.email ?? "Enter a valid email",
+          }),
+        message: z
+          .string()
+          .trim()
+          .min(10, {
+            message: t.validation?.message ?? "Tell me a bit more",
+          })
+          .max(1000, {
+            message: t.validation?.message ?? "Keep it under 1000 characters",
+          }),
+      }),
+    [t.validation?.email, t.validation?.message, t.validation?.name]
+  );
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -82,13 +107,31 @@ export function ContactForm({
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+    setSubmitState("idle");
+    setSubmitMessage("");
 
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-      // Here you would typically send to your backend or email service
-      console.log("Form data:", data);
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        const message =
+          payload?.error === "contact_not_configured"
+            ? t.notConfigured ?? t.error
+            : t.error;
+        throw new Error(message);
+      }
+
+      setSubmitState("success");
+      setSubmitMessage(t.success);
+      form.reset();
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(error instanceof Error ? error.message : t.error);
     } finally {
       setIsSubmitting(false);
     }
@@ -148,6 +191,20 @@ export function ContactForm({
               <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-12">
                 {/* Form Section */}
                 <div>
+                  {submitState !== "idle" && (
+                    <div
+                      role="status"
+                      aria-live="polite"
+                      className={`mb-5 rounded-lg border px-4 py-3 text-sm ${
+                        submitState === "success"
+                          ? "border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-300"
+                          : "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300"
+                      }`}
+                    >
+                      {submitMessage}
+                    </div>
+                  )}
+
                   <Form {...form}>
                     <form
                       onSubmit={form.handleSubmit(onSubmit)}
@@ -302,7 +359,7 @@ export function ContactForm({
                   >
                     <Badge
                       variant="secondary"
-                      className={`w-fit px-4 py-2 text-sm font-medium bg-linear-to-r${
+                      className={`w-fit px-4 py-2 text-sm font-medium bg-linear-to-r ${
                         isAvailable
                           ? "from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-400 border-green-500/20"
                           : "from-red-500/10 to-rose-500/10 text-red-700 dark:text-red-400 border-red-500/20"
@@ -415,11 +472,7 @@ export function ContactForm({
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                       <div className="text-xs text-muted-foreground leading-relaxed">
-                        <strong className="text-foreground">
-                          Privacy first:
-                        </strong>{" "}
-                        Your information is never shared or sold. Used only to
-                        respond to your inquiry.
+                        {t.privacy}
                       </div>
                     </div>
                   </motion.div>

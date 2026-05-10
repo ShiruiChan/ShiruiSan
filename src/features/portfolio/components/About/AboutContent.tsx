@@ -145,8 +145,7 @@ export function AboutContent() {
           className="mt-6 p-4 rounded-lg bg-accent/30 border border-accent-foreground/20 backdrop-blur-sm"
         >
           <p className="text-xs text-center text-muted-foreground">
-            ⚡ All projects include responsive design, performance optimization,
-            and clean code
+            {t.about.included}
           </p>
         </motion.div>
       </motion.div>

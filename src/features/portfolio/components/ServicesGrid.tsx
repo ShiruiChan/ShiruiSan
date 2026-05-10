@@ -27,6 +27,7 @@ export function ServicesGrid() {
     <div className="grid md:grid-cols-3 gap-8 mt-12">
       {services.map((service, index) => {
         const isPopular = (service as any).highlight;
+        const isHashLink = profile.calendly.startsWith("#");
 
         return (
           <motion.div
@@ -107,8 +108,8 @@ export function ServicesGrid() {
                 >
                   <a
                     href={profile.calendly}
-                    target="_blank"
-                    rel="noreferrer"
+                    target={isHashLink ? undefined : "_blank"}
+                    rel={isHashLink ? undefined : "noreferrer"}
                     className="font-semibold"
                   >
                     {service.cta}

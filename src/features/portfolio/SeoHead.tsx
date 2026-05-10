@@ -2,20 +2,21 @@ export function SeoHead() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Ваше Имя",
-    jobTitle: "Senior Frontend & Conversion Engineer",
-    url: "https://yourdomain.com",
+    name: "Харлампьев Ренат",
+    alternateName: "ShiruiSan",
+    jobTitle: "Frontend Developer & UI/UX Designer",
+    url: "https://shirui-san.vercel.app",
     sameAs: [
       "https://github.com/ShiruiChan",
-      "https://www.linkedin.com/in/yourname",
+      "https://t.me/ShiruiSan",
     ],
   };
   return (
     <>
-      <title>Websites that sell — Ваше Имя</title>
+      <title>ShiruiSan — сайты, лендинги и UI/UX под заявки</title>
       <meta
         name="description"
-        content="Revenue-focused portfolio: fast, beautiful, measurable websites. Book a free consult."
+        content="Портфолио Рената Харлампьева: быстрые сайты, лендинги, редизайн и UI/UX с понятной структурой, адаптивом и SEO-основой."
       />
       <script
         type="application/ld+json"

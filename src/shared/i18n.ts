@@ -2,14 +2,16 @@ export const i18n = {
   en: {
     nav: {
       home: "Home",
-      projects: "Projects",
+      projects: "Case Studies",
       services: "Services",
+      process: "Process",
       experience: "Experience",
       about: "About",
       testimonials: "Testimonials",
       contact: "Contact",
     },
     about: {
+      title: "What clients get",
       principles_title: "Principles",
       principles: {
         clarity: "Design for clarity first; delight second.",
@@ -19,27 +21,29 @@ export const i18n = {
       },
       stack_title: "Stack",
       highlights_title: "Highlights",
+      included:
+        "All projects include responsive design, performance checks, accessibility basics, and clean handoff.",
       highlights: {
         "design-system":
-          "Designed/implemented design system adopted by 3 teams",
-        lighthouse: "95–100 Lighthouse scores for key pages",
-        performance: "Drove SSR/ISR migration and reduced TTFB by 30%",
+          "Design and frontend stay in one connected workflow",
+        lighthouse: "SEO, metadata, responsive states and forms are prepared before launch",
+        performance: "Performance work starts with image strategy, SSR and restrained motion",
       },
     },
     stats: {
       projects: {
-        count: 12,
-        name: "Projects",
-        detailed: "Successfully delivered across web and mobile platforms",
+        count: 5,
+        name: "Launches",
+        detailed: "Published websites and product interfaces with responsive delivery",
       },
       design: {
-        name: "Design Systems",
-        detailed: "Built scalable design systems for enterprise applications",
+        name: "Design + Code",
+        detailed: "One workflow from UX structure to polished frontend implementation",
       },
       year: {
-        count: 5,
-        name: "Years",
-        detailed: "Experience in modern frontend development and UI/UX design",
+        count: 3,
+        name: "Core Formats",
+        detailed: "Landing pages, portfolio websites, and focused redesigns",
       },
     },
     services: {
@@ -79,10 +83,31 @@ export const i18n = {
       },
     },
     sections: {
-      projects_title: "Projects",
-      services_title: "Choose your outcome",
+      projects_title: "Featured case studies",
+      services_title: "Choose a format",
       services_subtitle: "Clear scope, fixed price, real results.",
+      process_title: "How the work moves",
       testimonials_title: "Clients say",
+    },
+    process: {
+      steps: [
+        {
+          title: "Brief",
+          text: "We define the audience, offer, references, constraints and one measurable goal.",
+        },
+        {
+          title: "Structure",
+          text: "I turn the idea into a clear page flow, content hierarchy and conversion path.",
+        },
+        {
+          title: "Design + build",
+          text: "The interface is built responsively with accessible components and purposeful motion.",
+        },
+        {
+          title: "Launch",
+          text: "We polish SEO basics, analytics, forms, performance and handoff details before release.",
+        },
+      ],
     },
     contact: {
       title: "Let's build something great",
@@ -97,10 +122,19 @@ export const i18n = {
       sending: "Sending...",
       success: "Message sent! I'll reply within 24 hours.",
       error: "Something went wrong. Try Telegram?",
+      notConfigured:
+        "The contact endpoint is ready, but Telegram credentials are not configured yet. Use Telegram or email for now.",
       availability: "Available for new projects",
       unavailable: "The workday is over",
       responseTime: "Typical response time",
       or: "Or reach me directly:",
+      validation: {
+        name: "Enter your name",
+        email: "Enter a valid email",
+        message: "Tell me a little more about the project",
+      },
+      privacy:
+        "Privacy first: your information is used only to respond to your inquiry.",
     },
     brand: "ShiruiSan",
     tagline:
@@ -122,36 +156,37 @@ export const i18n = {
       themeLight: "Light mode",
       themeDark: "Dark mode",
       lang: "Language",
+      navigate: "Navigate",
     },
     hero: {
-      title_html1: "Creating",
-      title_html2: "Experiences",
+      title_html1: "Designing",
+      title_html2: "websites that earn trust",
       subtitle:
-        "Subtle motion, dependable typography, and measured performance",
-      primary_cta: "Get started",
-      secondary_cta: "Learn more",
+        "I design and build fast landing pages, portfolios and product interfaces with clear structure, responsive UI and contact-ready flows.",
+      primary_cta: "Discuss a project",
+      secondary_cta: "View cases",
       stats: {
-        frame_time_value: "~60",
-        frame_time_unit: "ms",
-        frame_time_label: "Frame time",
-        runtime_deps_value: "0",
-        runtime_deps_unit: "",
-        runtime_deps_label: "Runtime deps",
-        vibes_value: "WOW",
-        vibes_unit: "⭐",
-        vibes_label: "Vibes",
+        frame_time_value: "5",
+        frame_time_unit: "+",
+        frame_time_label: "Published projects",
+        runtime_deps_value: "24",
+        runtime_deps_unit: "h",
+        runtime_deps_label: "Typical reply",
+        vibes_value: "SEO",
+        vibes_unit: "+",
+        vibes_label: "Launch basics",
       },
       preview: {
-        header_kicker: "Preview",
-        header_title: "Cozy Light / Rich Dark",
-        badge: "Themed",
+        header_kicker: "Workflow",
+        header_title: "From brief to launch",
+        badge: "Client-ready",
         bullets: [
-          "Neutral parchment base",
-          "Warm grays for copy",
-          "Violet accents with softness",
+          "Clear page structure before visuals",
+          "Responsive UI with accessible states",
+          "Forms, analytics and SEO basics before release",
         ],
-        note_particles: "Particles pause on background tabs",
-        note_hidpi: "HiDPI crisp lines",
+        note_particles: "Measured performance",
+        note_hidpi: "Clean handoff",
       },
       a11y: {
         toggle_theme: "Toggle theme",
@@ -166,14 +201,16 @@ export const i18n = {
   ru: {
     nav: {
       home: "Главная",
-      projects: "Проекты",
+      projects: "Кейсы",
       services: "Услуги",
+      process: "Процесс",
       experience: "Опыт",
       about: "Обо мне",
       testimonials: "Отзывы",
       contact: "Контакты",
     },
     about: {
+      title: "Что получает клиент",
       principles_title: "Принципы",
       principles: {
         clarity: "Дизайн для ясности прежде всего; восторг — потом.",
@@ -183,27 +220,29 @@ export const i18n = {
       },
       stack_title: "Стек",
       highlights_title: "Достижения",
+      included:
+        "Каждый проект включает адаптив, проверку скорости, базовую доступность и аккуратную передачу.",
       highlights: {
-        "design-system": "Спроектировал дизайн-систему, принятую 3 командами",
-        lighthouse: "95–100 баллов Lighthouse для ключевых страниц",
-        performance: "Провёл миграцию на SSR/ISR и сократил TTFB на 30%",
+        "design-system": "Дизайн и фронтенд идут в одном связанном процессе",
+        lighthouse: "SEO, метаданные, адаптивные состояния и формы готовятся до запуска",
+        performance: "Скорость начинается с изображений, SSR и сдержанного motion",
       },
     },
     stats: {
       projects: {
-        count: 12,
-        name: "Проектов",
+        count: 5,
+        name: "Запусков",
         detailed:
-          "Успешно реализовано на веб-платформах и мобильных устройствах",
+          "Опубликованные сайты и интерфейсы с адаптивной подачей",
       },
       design: {
-        name: "Дизайн систем",
-        detailed: "Создание систем проектирования для корпоративных приложений",
+        name: "Дизайн + код",
+        detailed: "Один процесс от UX-структуры до аккуратной фронтенд-сборки",
       },
       year: {
-        count: 5,
-        name: "Лет",
-        detailed: "Опыт в современной разработке фронтенда и дизайне UI/UX",
+        count: 3,
+        name: "Формата",
+        detailed: "Лендинги, портфолио и точечные редизайны",
       },
     },
     services: {
@@ -243,34 +282,34 @@ export const i18n = {
       },
     },
     hero: {
-      title_html1: "Создавать",
-      title_html2: "впечатления",
+      title_html1: "Проектирую",
+      title_html2: "сайты, которым доверяют",
       subtitle:
-        "Тонкие анимации, надёжная типографика и измеримая производительность",
-      primary_cta: "Начать",
-      secondary_cta: "Подробнее",
+        "Делаю быстрые лендинги, портфолио и продуктовые интерфейсы с понятной структурой, адаптивным UI и рабочей воронкой контакта.",
+      primary_cta: "Обсудить проект",
+      secondary_cta: "Смотреть кейсы",
       stats: {
-        frame_time_value: "~60",
-        frame_time_unit: "мс",
-        frame_time_label: "Время кадра",
-        runtime_deps_value: "0",
-        runtime_deps_unit: "",
-        runtime_deps_label: "Зависимости рантайма",
-        vibes_value: "WOW",
-        vibes_unit: "⭐",
-        vibes_label: "Вайб",
+        frame_time_value: "5",
+        frame_time_unit: "+",
+        frame_time_label: "Запущенных проектов",
+        runtime_deps_value: "24",
+        runtime_deps_unit: "ч",
+        runtime_deps_label: "Обычный ответ",
+        vibes_value: "SEO",
+        vibes_unit: "+",
+        vibes_label: "Основа запуска",
       },
       preview: {
-        header_kicker: "Превью",
-        header_title: "Cozy Light / Rich Dark",
-        badge: "Темизация",
+        header_kicker: "Процесс",
+        header_title: "От брифа до запуска",
+        badge: "Для клиента",
         bullets: [
-          "Нейтральная «пергаментная» база",
-          "Тёплые серые для текста",
-          "Акценты фиолетового с мягкостью",
+          "Сначала структура страницы, потом визуал",
+          "Адаптивный UI с доступными состояниями",
+          "Формы, аналитика и SEO-основа перед релизом",
         ],
-        note_particles: "Частицы ставятся на паузу на фоновых вкладках",
-        note_hidpi: "Чёткие линии на HiDPI",
+        note_particles: "Измеримая скорость",
+        note_hidpi: "Чистая передача",
       },
       a11y: {
         toggle_theme: "Переключить тему",
@@ -282,11 +321,32 @@ export const i18n = {
       popular: "Популярный",
     },
     sections: {
-      projects_title: "Проекты",
-      services_title: "Выберите свой результат",
+      projects_title: "Избранные кейсы",
+      services_title: "Выберите формат",
       services_subtitle:
         "Чёткий охват, фиксированная цена, реальные результаты.",
+      process_title: "Как идет работа",
       testimonials_title: "Клиенты говорят",
+    },
+    process: {
+      steps: [
+        {
+          title: "Бриф",
+          text: "Фиксируем аудиторию, оффер, референсы, ограничения и одну измеримую цель.",
+        },
+        {
+          title: "Структура",
+          text: "Собираю сценарий страницы, иерархию контента и путь к заявке.",
+        },
+        {
+          title: "Дизайн + сборка",
+          text: "Делаю адаптивный интерфейс с доступными компонентами и уместным motion.",
+        },
+        {
+          title: "Запуск",
+          text: "Проверяем SEO-основу, аналитику, формы, скорость и детали передачи.",
+        },
+      ],
     },
     contact: {
       title: "Давайте сделаем крутой продукт",
@@ -301,10 +361,19 @@ export const i18n = {
       sending: "Отправляю...",
       success: "Сообщение отправлено! Отвечу в течение 24 часов.",
       error: "Что-то пошло не так. Попробуйте в Telegram?",
+      notConfigured:
+        "Контактный endpoint готов, но Telegram-ключи еще не настроены. Пока напишите в Telegram или на почту.",
       availability: "Доступен для новых проектов",
       unavailable: "Рабочий день закончился",
       responseTime: "Обычное время ответа",
       or: "Или свяжитесь напрямую:",
+      validation: {
+        name: "Введите имя",
+        email: "Введите корректную почту",
+        message: "Расскажите о проекте чуть подробнее",
+      },
+      privacy:
+        "Конфиденциально: данные используются только для ответа на заявку.",
     },
     brand: "ShiruiSan",
     tagline:
@@ -326,6 +395,7 @@ export const i18n = {
       themeLight: "Светлая тема",
       themeDark: "Тёмная тема",
       lang: "Язык",
+      navigate: "Навигация",
     },
   },
 };
